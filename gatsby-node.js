@@ -24,7 +24,7 @@ exports.createPages = ({ graphql, actions }) => {
   `).then(result => {
     result.data.allEsaPost.edges.forEach(edge => {
       createPage({
-        path: `/post/${edge.node.number}`,
+        path: `/posts/${edge.node.number}`,
         component: postTemplate,
         context: {
           number: edge.node.number,
@@ -38,7 +38,7 @@ exports.createPages = ({ graphql, actions }) => {
 
     Array.from({ length: blogPages }).forEach((_, i) => {
       createPage({
-        path: i === 0 ? `/` : `/posts/${i + 1}`,
+        path: i === 0 ? `/` : `/page/${i + 1}`,
         component: postsTemplate,
         context: {
           skip: blogPostPerPage * i,

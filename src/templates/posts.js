@@ -11,7 +11,7 @@ const Posts = ({ data, pageContext }) => (
     {data.allEsaPost.edges.map(({ node }) => (
       <Link
         rel="prefetch"
-        to={`/post/${node.number}`}
+        to={`/posts/${node.number}`}
         key={node.number}
         className="post w-full mb-8 rounded overflow-hidden shadow flex flex-col md:flex-row hover:shadow-md transform hover:-translate-y-1 transition duration-500"
       >
@@ -51,7 +51,7 @@ const Posts = ({ data, pageContext }) => (
           to={
             pageContext.currentPage === 2
               ? `/`
-              : `/posts/${pageContext.currentPage - 1}`
+              : `/page/${pageContext.currentPage - 1}`
           }
           rel="prev"
         >
@@ -62,7 +62,7 @@ const Posts = ({ data, pageContext }) => (
 
       {!pageContext.isLast && (
         <Link
-          to={`/posts/${pageContext.currentPage + 1}/`}
+          to={`/page/${pageContext.currentPage + 1}/`}
           rel="next"
           className="ml-auto"
         >
