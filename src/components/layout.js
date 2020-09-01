@@ -15,6 +15,7 @@ import "../styles/markdown.css"
 
 import Header from "./header"
 import Footer from "./footer"
+import Search from "./search"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -30,9 +31,21 @@ const Layout = ({ children }) => {
   return (
     <div className="layout min-h-screen">
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div className="main">
-        <main className="max-w-screen-lg mx-auto px-6 py-12">{children}</main>
-      </div>
+      <main className="main">
+        <div className="flex max-w-screen-lg mx-auto px-6 py-12">
+          <div className="w-full md:w-3/4 relative">{children}</div>
+          <div className="hidden md:block w-1/4 pl-8">
+            <div className="sticky top-2 hidden md:block">
+              <div className="mb-4 text-sm">
+                <div className="w-full rounded bg-gray-200 p-2 mb-2">
+                  記事を検索
+                </div>
+                <Search />
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
       <Footer />
     </div>
   )
