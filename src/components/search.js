@@ -29,50 +29,59 @@ const Search = () => {
   }, [])
 
   const handleChange = e => {
-    setSearchValue(e.target.value)
-    bindSearch()
+    bindSearch(e.target.value)
   }
 
-  const bindSearch = () => {
+  const bindSearch = value => {
     const filterData = postsData.filter(post => {
-      // TODO: 小文字/大文字対応
-      return post.name.includes(searchValue) || post.tags.includes(searchValue)
+      console.log(post)
+      return post.name.includes(value)
     })
+
+    console.log(filterData)
     setResultData(filterData)
+    setSearchValue(value)
   }
 
   const renderSearch = () => (
     <>
       {resultData.map(post => (
-        <div className="w-full rounded" key={post.number}>
-          <Link
-            to={`/posts/${post.number}`}
-            className="block w-full h-full p-2"
-          >
-            {post.name}
-          </Link>
-        </div>
+        <Link
+          to={`/posts/${post.number}`}
+          key={post.number}
+          className="search-item block rounded w-full h-full p-2 bg-white"
+        >
+          {post.name}
+        </Link>
       ))}
     </>
   )
 
   return (
-    <div className="shadow">
+    <div className="shadow relative">
       <form className="">
-        <label className="flex relative" htmlFor="search-input">
-          <span className="absolute top-inset-1/2 left-2 -translate-y-1/2">
+        <label className="relative" htmlFor="search-input">
+          <span className="absolute top-1/2 left-2 transform -translate-y-1/2">
             <FontAwesomeIcon icon={faSearch} />
           </span>
           <input
             id="search-input"
             className="w-full rounded p-2 pl-8"
             type="text"
-            placeholder="キーワードを入力"
+            placeholder="記事を検索"
             onChange={handleChange}
+            autoComplete="off"
           />
         </label>
       </form>
-      {searchValue && <div className="mt-2">{renderSearch()}</div>}
+      {searchValue && (
+        <div
+          className="absolute w-full top-100 right-0 z-10 rounded shadow"
+          style={{ width: 300 }}
+        >
+          {renderSearch()}
+        </div>
+      )}
     </div>
   )
 }

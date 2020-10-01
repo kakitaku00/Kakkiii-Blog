@@ -53,3 +53,7 @@ a {
 .footer {
   grid-area: footer;
 }
+
+.search-item:hover {
+  background: #edf2f7;
+}

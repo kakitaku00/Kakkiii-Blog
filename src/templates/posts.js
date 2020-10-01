@@ -8,7 +8,7 @@ import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 
 const Posts = ({ data, pageContext }) => {
   // TODO: postのサムネイルの仕組みを取り入れる
-  console.log(data)
+  console.log(data.allEsaPost)
   console.log(pageContext)
 
   return (
@@ -29,18 +29,23 @@ const Posts = ({ data, pageContext }) => {
           <div className="w-full md:w-2/3 flex flex-col">
             <div className="px-4 md:px-6 py-4">
               <div className="font-bold text-xl mb-2">{node.name}</div>
-              <p className="truncate text-gray-500 text-sm">{node.body_md}</p>
             </div>
             <div className="px-4 md:px-6 pt-4 pb-3 mt-auto flex">
               <div className="flex flex-wrap items-start">
-                {node.tags.map((tag, i) => (
-                  <span
-                    className="inline-block bg-gray-200 rounded-full px-3 py-1 mb-1 text-xs md:text-sm font-semibold text-gray-700 mr-2"
-                    key={i}
-                  >
-                    {tag}
+                {node.tags.length ? (
+                  node.tags.map((tag, i) => (
+                    <span
+                      className="inline-block bg-gray-200 rounded-full px-3 py-1 mb-1 text-xs md:text-sm font-semibold text-gray-700 mr-2"
+                      key={i}
+                    >
+                      {tag}
+                    </span>
+                  ))
+                ) : (
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 mb-1 text-xs md:text-sm font-semibold text-gray-700 mr-2">
+                    blog
                   </span>
-                ))}
+                )}
               </div>
               <div className="ml-auto mb-1 flex flex-shrink-0 self-end items-center text-gray-500 text-sm">
                 <FontAwesomeIcon icon={faClock} />
