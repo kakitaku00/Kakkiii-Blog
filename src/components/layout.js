@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
     <div className="layout min-h-screen">
       <Header siteTitle={data.site.siteMetadata.title} />
       <main className="main">
-        <div className="flex max-w-screen-xl mx-auto p-24">
+        <div className="flex max-w-screen-xl mx-auto px-24 py-12">
           <div className="w-full relative">{children}</div>
           <div
             className="hidden md:block pl-8 flex-shrink-0"
