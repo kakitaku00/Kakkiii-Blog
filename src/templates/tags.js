@@ -1,13 +1,20 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { Link } from "gatsby"
 import Layout from "../components/layout"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClock } from "@fortawesome/free-regular-svg-icons"
 import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 
-const Posts = ({ data, pageContext }) => {
-  const allPostHtml = data.allEsaPost.edges.map(({ node }) => node.body_html)
+const Posts = ({ pageContext }) => {
+  const { group, index, first, last, additionalContext } = pageContext
+  const { tag } = additionalContext
+
+  const previousUrl =
+    index - 1 == 1 ? "/tags/test/" : `/tags/test/page/${(index + 1).toString()}`
+  const nextUrl = `/tags/test/page/${(index + 1).toString()}`
+
+  const allPostHtml = group.map(({ node }) => node.body_html)
   const postDataList = allPostHtml.map(html => {
     const defaultImageTag = `<img src="https://images.microcms-assets.io/protected/ap-northeast-1:f18fa8ff-5b5f-43d2-ac15-ec07384ec391/service/kakki-blog/media/PAK_MT9V9A6981_TP_V4.jpg" alt="">`
     const imageTag = html.match(/<img.*src=".*">/) || [defaultImageTag]
@@ -22,7 +29,10 @@ const Posts = ({ data, pageContext }) => {
 
   return (
     <Layout>
-      {data.allEsaPost.edges.map(({ node }, i) => (
+      <div className="py-4 mb-4 text-center">
+        <span className="font-bold text-3xl">{tag}</span> に関するページ
+      </div>
+      {group.map(({ node }, i) => (
         <Link
           rel="prefetch"
           to={`/posts/${node.number}`}
@@ -68,26 +78,15 @@ const Posts = ({ data, pageContext }) => {
         </Link>
       ))}
       <div className="flex py-2">
-        {!pageContext.isFirst && (
-          <Link
-            to={
-              pageContext.currentPage === 2
-                ? `/`
-                : `/page/${pageContext.currentPage - 1}`
-            }
-            rel="prev"
-          >
+        {!first && (
+          <Link to={previousUrl} rel="prev">
             <FontAwesomeIcon icon={faAngleLeft} className="mr-1" />
             prev
           </Link>
         )}
 
-        {!pageContext.isLast && (
-          <Link
-            to={`/page/${pageContext.currentPage + 1}/`}
-            rel="next"
-            className="ml-auto"
-          >
+        {!last && (
+          <Link to={nextUrl} rel="next" className="ml-auto">
             next
             <FontAwesomeIcon icon={faAngleRight} className="ml-1" />
           </Link>
@@ -98,26 +97,3 @@ const Posts = ({ data, pageContext }) => {
 }
 
 export default Posts
-
-export const query = graphql`
-  query($skip: Int!, $limit: Int!) {
-    allEsaPost(
-      sort: { fields: number, order: DESC }
-      limit: $limit
-      skip: $skip
-    ) {
-      edges {
-        node {
-          number
-          name
-          body_md
-          body_html
-          category
-          tags
-          created_at
-          updated_at
-        }
-      }
-    }
-  }
-`

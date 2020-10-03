@@ -1,23 +1,11 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
-const Post = props => {
-  // TODO: パースの仕組みを考える
+const Post = ({ data, pageContext }) => {
+  const { category } = pageContext
+  const post = data.esaPost
 
-  const post = props.data.esaPost
-  const md = post.body_md
-  const html = post.childrenEsaPostBodyMarkdown[0].childMarkdownRemark.html
-  const defaultImageTag = `<img src="https://images.microcms-assets.io/protected/ap-northeast-1:f18fa8ff-5b5f-43d2-ac15-ec07384ec391/service/kakki-blog/media/PAK_MT9V9A6981_TP_V4.jpg" alt="">`
-  const category = getBlogInfo(md, "Category") || "Test"
-  const thumbnail = getBlogInfo(md, "Thumbnail") || defaultImageTag
-
-  function getBlogInfo(md, item) {
-    const searchRegexp = new RegExp(`${item}=.*`, "g")
-    const replaceRegexp = new RegExp(`${item}=`, "g")
-    const searchInfo = md.match(searchRegexp) || []
-    return searchInfo.join(",").replace(replaceRegexp, "")
-  }
   return (
     <Layout>
       <section>
@@ -25,20 +13,29 @@ const Post = props => {
           <h2 className="text-xl md:text-3xl">{post.name}</h2>
         </header>
         <div className="mb-6">
-          <div className="inline-block rounded-full px-4 mr-2 bg-teal-500 text-white p-2 rounded leading-none">
-            <div className="flex items-center">{category}</div>
-          </div>
+          <Link
+            rel="prefetch"
+            to={`/category/${category}`}
+            className="inline-block bg-teal-500 rounded-full px-3 py-1 mr-2 text-xs md:text-sm font-semibold text-white mr-2"
+          >
+            {category}
+          </Link>
+          {post.tags.map((tag, i) => (
+            <Link
+              rel="prefetch"
+              to={`/tags/${tag}`}
+              key={i}
+              className="inline-block bg-gray-200 rounded-full px-3 py-1 mr-2 text-xs md:text-sm font-semibold text-gray-700 mr-2"
+            >
+              #{tag}
+            </Link>
+          ))}
         </div>
         <div
+          className="markdown-body"
           dangerouslySetInnerHTML={{
-            __html: thumbnail,
-          }}
-          className="mb-8"
-        ></div>
-        <div
-          className="markdown-body pt-8 border-t-4 border-solid border-gray-300"
-          dangerouslySetInnerHTML={{
-            __html: html.replace(/[\s\S]*<!-- Post Start -->/, ""),
+            __html:
+              post.childrenEsaPostBodyMarkdown[0].childMarkdownRemark.html,
           }}
         />
       </section>

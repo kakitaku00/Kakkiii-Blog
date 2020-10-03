@@ -38,7 +38,6 @@ const Search = () => {
       return post.name.includes(value)
     })
 
-    console.log(filterData)
     setResultData(filterData)
     setSearchValue(value)
   }

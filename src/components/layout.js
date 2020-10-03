@@ -33,11 +33,13 @@ const Layout = ({ children }) => {
     <div className="layout min-h-screen">
       <Header siteTitle={data.site.siteMetadata.title} />
       <main className="main">
-        <div className="flex max-w-screen-xl mx-auto px-24 py-12">
-          <div className="w-full relative">{children}</div>
+        <div className="flex max-w-screen-xl mx-auto md:px-24 md:py-12 px-8 py-4">
+          <div className="relative" style={{ width: "calc(100% - 332px)" }}>
+            {children}
+          </div>
           <div
-            className="hidden md:block pl-8 flex-shrink-0"
-            style={{ width: 300 }}
+            className="hidden md:block ml-8 flex-shrink-0"
+            style={{ width: "300px" }}
           >
             <div className="sticky top-2 hidden md:block">
               <div className="p-4 mb-4 rounded shadow">
@@ -73,7 +75,27 @@ const Layout = ({ children }) => {
               </div>
 
               <div className="p-4 mb-4 rounded shadow">
-                <div className="font-bold">Tags</div>
+                <div className="mb-2 font-bold">Topics</div>
+                <ul class="flex">
+                  <li>
+                    <Link
+                      rel="prefetch"
+                      to={`/tags/test`}
+                      className="inline-block bg-gray-200 rounded-full px-3 py-1 mb-1 text-xs md:text-sm font-semibold text-gray-700 mr-2"
+                    >
+                      #test
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      rel="prefetch"
+                      to={`/tags/sample`}
+                      className="inline-block bg-gray-200 rounded-full px-3 py-1 mb-1 text-xs md:text-sm font-semibold text-gray-700 mr-2"
+                    >
+                      #sample
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
