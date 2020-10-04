@@ -12,7 +12,7 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   const postTemplate = path.resolve("./src/templates/post.js")
   const postsTemplate = path.resolve("./src/templates/posts.js")
-  const tagsTemplate = path.resolve("./src/templates/tags.js")
+  const searchedTemplate = path.resolve("./src/templates/searched.js")
 
   return graphql(`
     {
@@ -41,6 +41,8 @@ exports.createPages = ({ graphql, actions }) => {
     allEsaPost.edges.forEach(edge => {
       const post = edge.node
       const number = post.number
+      const category = post.category.replace(/blog\//, "") || "blog"
+      console.log("category", category)
 
       post.tags.forEach(tag => {
         tagMap.set(
@@ -49,12 +51,15 @@ exports.createPages = ({ graphql, actions }) => {
         )
       })
 
-      //TODO: categoryのMapを作成
+      const numbersByCategory = categoryMap.get(category)
+      console.log("numberByCategory", numbersByCategory)
+      categoryMap.set(
+        category,
+        numbersByCategory ? numbersByCategory.concat(number) : [number]
+      )
 
       postEntities[post.number] = edge
     })
-    console.log(tagMap)
-    console.log(postEntities)
 
     allEsaPost.edges.forEach(edge => {
       const number = edge.node.number
@@ -88,17 +93,36 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
 
+    Array.from(categoryMap.keys()).map(category => {
+      const postNumbers = categoryMap.get(category)
+      console.log("postNumbers", postNumbers)
+      createPaginatedPages({
+        edges: postNumbers.map(number => postEntities[number]),
+        createPage,
+        pageTemplate: searchedTemplate,
+        pageLength: 3, // TODO: ページングデバッグ用に表示数を制限
+        pathPrefix: `category/${category}`,
+        buildPath: (index, pathPrefix) =>
+          index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`,
+        context: {
+          type: "category",
+          category,
+        },
+      })
+    })
+
     Array.from(tagMap.keys()).map(tag => {
       const postNumbers = tagMap.get(tag)
       createPaginatedPages({
         edges: postNumbers.map(number => postEntities[number]),
         createPage,
-        pageTemplate: tagsTemplate,
-        pageLength: 3,
+        pageTemplate: searchedTemplate,
+        pageLength: 3, // TODO: ページングデバッグ用に表示数を制限
         pathPrefix: `tags/${tag}`,
         buildPath: (index, pathPrefix) =>
           index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`,
         context: {
+          type: "tags",
           tag,
         },
       })

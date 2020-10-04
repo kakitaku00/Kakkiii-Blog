@@ -8,11 +8,20 @@ import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 
 const Posts = ({ pageContext }) => {
   const { group, index, first, last, additionalContext } = pageContext
-  const { tag } = additionalContext
+  const { type, tag, category } = additionalContext
+  const path = {
+    default: "/",
+    category: `/category/${category}`,
+    tags: `/tags/${tag}`,
+  }
+
+  console.log(index)
 
   const previousUrl =
-    index - 1 == 1 ? "/tags/test/" : `/tags/test/page/${(index + 1).toString()}`
-  const nextUrl = `/tags/test/page/${(index + 1).toString()}`
+    index - 1 == 1
+      ? `${path[type]}/`
+      : `${path[type]}/page/${(index - 1).toString()}`
+  const nextUrl = `${path[type]}/page/${(index + 1).toString()}`
 
   const allPostHtml = group.map(({ node }) => node.body_html)
   const postDataList = allPostHtml.map(html => {
@@ -29,9 +38,12 @@ const Posts = ({ pageContext }) => {
 
   return (
     <Layout>
-      <div className="py-4 mb-4 text-center">
-        <span className="font-bold text-3xl">{tag}</span> に関するページ
-      </div>
+      {(tag || category) && (
+        <div className="py-4 mb-4 text-center">
+          <span className="font-bold text-3xl">{category || tag}</span>{" "}
+          に関するページ
+        </div>
+      )}
       {group.map(({ node }, i) => (
         <Link
           rel="prefetch"

@@ -75,8 +75,50 @@ const Layout = ({ children }) => {
               </div>
 
               <div className="p-4 mb-4 rounded shadow">
+                <div className="mb-2 font-bold">Category</div>
+                <ul>
+                  <li>
+                    <Link
+                      rel="prefetch"
+                      to={`/category/blog`}
+                      className="block py-2 mb-1 text-sm md:text-md border-solid border-b border-gray-400"
+                    >
+                      Blog
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      rel="prefetch"
+                      to={`/category/Web`}
+                      className="block py-2 mb-1 text-sm md:text-md border-solid border-b border-gray-400"
+                    >
+                      Web
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      rel="prefetch"
+                      to={`/category/Hobby`}
+                      className="block py-2 mb-1 text-sm md:text-md border-solid border-b border-gray-400"
+                    >
+                      Hobby
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      rel="prefetch"
+                      to={`/category/Other`}
+                      className="block py-2 mb-1 text-sm md:text-md border-solid border-b border-gray-400"
+                    >
+                      Other
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="p-4 mb-4 rounded shadow">
                 <div className="mb-2 font-bold">Topics</div>
-                <ul class="flex">
+                <ul className="flex">
                   <li>
                     <Link
                       rel="prefetch"
