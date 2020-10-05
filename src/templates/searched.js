@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClock } from "@fortawesome/free-regular-svg-icons"
@@ -9,6 +10,7 @@ import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 const Posts = ({ pageContext }) => {
   const { group, index, first, last, additionalContext } = pageContext
   const { type, tag, category } = additionalContext
+
   const path = {
     default: "/",
     category: `/category/${category}`,
@@ -38,7 +40,10 @@ const Posts = ({ pageContext }) => {
 
   return (
     <Layout>
-      {(tag || category) && (
+      <SEO
+        title={category || tag ? `${category || tag} に関するページ` : null}
+      />
+      {(category || tag) && (
         <div className="py-4 mb-4 text-center">
           <span className="font-bold text-3xl">{category || tag}</span>{" "}
           に関するページ

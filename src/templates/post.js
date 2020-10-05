@@ -1,13 +1,32 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 const Post = ({ data, pageContext }) => {
   const { category } = pageContext
   const post = data.esaPost
 
+  // thumbnail
+  const defaultImageSrc = `https://images.microcms-assets.io/protected/ap-northeast-1:f18fa8ff-5b5f-43d2-ac15-ec07384ec391/service/kakki-blog/media/PAK_MT9V9A6981_TP_V4.jpg`
+  const imageTag = post.body_html.match(/<img.*src=".*">/) || [defaultImageSrc]
+  const thumbnail = imageTag[0].match(/https:\/\/.*\..{3}/).join(",")
+
+  // description
+  const paragraph = post.body_html.match(/<p.*\/p>/) || ["none"]
+  const description = paragraph[0]
+    .replace(/<br>/g, "")
+    .replace(/<p.*">/, "")
+    .replace(/<\/.>/g, "")
+
   return (
     <Layout>
+      <SEO
+        title={post.name}
+        description={description || " "}
+        image={thumbnail}
+        article
+      />
       <section>
         <header className="mb-4 md:mb-8">
           <h2 className="text-xl md:text-3xl">{post.name}</h2>

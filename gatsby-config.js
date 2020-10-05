@@ -5,9 +5,10 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `BLOG`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    title: `Kakkiii-Blog`,
+    description: `Kakkiii's blog`,
     author: `@kakkiii00`,
+    twitterUsername: `@kakkiii00`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
