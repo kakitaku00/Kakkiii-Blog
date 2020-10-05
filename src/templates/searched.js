@@ -10,6 +10,7 @@ import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 const Posts = ({ pageContext }) => {
   const { group, index, first, last, additionalContext } = pageContext
   const { type, tag, category } = additionalContext
+  const allPostHtml = group.map(({ node }) => node.body_html)
 
   const path = {
     default: "/",
@@ -17,15 +18,14 @@ const Posts = ({ pageContext }) => {
     tags: `/tags/${tag}`,
   }
 
-  console.log(index)
-
+  // Pagination
   const previousUrl =
     index - 1 == 1
       ? `${path[type]}/`
       : `${path[type]}/page/${(index - 1).toString()}`
   const nextUrl = `${path[type]}/page/${(index + 1).toString()}`
 
-  const allPostHtml = group.map(({ node }) => node.body_html)
+  // thumbnail or description
   const postDataList = allPostHtml.map(html => {
     const defaultImageTag = `<img src="https://images.microcms-assets.io/protected/ap-northeast-1:f18fa8ff-5b5f-43d2-ac15-ec07384ec391/service/kakki-blog/media/PAK_MT9V9A6981_TP_V4.jpg" alt="">`
     const imageTag = html.match(/<img.*src=".*">/) || [defaultImageTag]
@@ -38,11 +38,25 @@ const Posts = ({ pageContext }) => {
     return { src, text }
   })
 
+  // SEO DATA
+  const SEO_DATA = {
+    default: {
+      title: `TOP`,
+      path: `/`,
+    },
+    category: {
+      title: `${category} に関するページ`,
+      path: path[type],
+    },
+    tags: {
+      title: `${tag} に関するページ`,
+      path: path[type],
+    },
+  }
+
   return (
     <Layout>
-      <SEO
-        title={category || tag ? `${category || tag} に関するページ` : null}
-      />
+      <SEO title={SEO_DATA[type].title} path={SEO_DATA[type].path} />
       {(category || tag) && (
         <div className="py-4 mb-4 text-center">
           <span className="font-bold text-3xl">{category || tag}</span>{" "}
