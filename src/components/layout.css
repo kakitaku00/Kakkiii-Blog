@@ -54,6 +54,26 @@ a {
   grid-area: footer;
 }
 
+.ellipsis-1,
+.ellipsis-2,
+.ellipsis-3 {
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+}
+
+.ellipsis-1 {
+  -webkit-line-clamp: 1;
+}
+
+.ellipsis-2 {
+  -webkit-line-clamp: 2;
+}
+
+.ellipsis-3 {
+  -webkit-line-clamp: 3;
+}
+
 .search-item:hover {
   background: #edf2f7;
 }

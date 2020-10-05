@@ -6,7 +6,7 @@ import Search from "./search"
 
 const Header = ({ siteTitle }) => (
   <header className="header bg-teal-500">
-    <div className="max-w-screen-xl mx-auto px-24 h-full flex items-center">
+    <div className="max-w-screen-xl mx-auto xl:px-24 lg:px-16 md:px-12 sm:px-8 px-4 h-full flex items-center">
       <h1 className="m-0">
         <Link to="/" className="text-white text-2xl">
           {siteTitle}

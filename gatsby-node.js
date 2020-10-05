@@ -75,7 +75,7 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
 
-    const blogPostPerPage = 5
+    const blogPostPerPage = 6
     const blogPosts = allEsaPost.edges.length
     const blogPages = Math.ceil(blogPosts / blogPostPerPage)
 
@@ -100,7 +100,7 @@ exports.createPages = ({ graphql, actions }) => {
         edges: postNumbers.map(number => postEntities[number]),
         createPage,
         pageTemplate: searchedTemplate,
-        pageLength: 3, // TODO: ページングデバッグ用に表示数を制限
+        pageLength: blogPostPerPage,
         pathPrefix: `category/${category}`,
         buildPath: (index, pathPrefix) =>
           index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`,
@@ -117,7 +117,7 @@ exports.createPages = ({ graphql, actions }) => {
         edges: postNumbers.map(number => postEntities[number]),
         createPage,
         pageTemplate: searchedTemplate,
-        pageLength: 3, // TODO: ページングデバッグ用に表示数を制限
+        pageLength: blogPostPerPage,
         pathPrefix: `tags/${tag}`,
         buildPath: (index, pathPrefix) =>
           index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`,

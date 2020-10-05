@@ -17,7 +17,12 @@ module.exports = {
       none: "none",
       blur: "blur(10px)",
     },
-    extend: {},
+    extend: {
+      width: {
+        posts: "calc(100% - 332px)",
+        "1/2-8": "calc(50% - 1rem)",
+      },
+    },
   },
   variants: {
     backgroundColor: ["disabled"],

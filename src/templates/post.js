@@ -30,7 +30,7 @@ const Post = ({ data, pageContext }) => {
       />
       <section>
         <header className="mb-4 md:mb-8">
-          <h2 className="text-xl md:text-3xl">{post.name}</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">{post.name}</h2>
         </header>
         <div className="mb-6">
           <Link
