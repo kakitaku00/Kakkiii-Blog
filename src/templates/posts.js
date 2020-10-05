@@ -23,7 +23,7 @@ const Posts = ({ data, pageContext }) => {
 
   return (
     <Layout>
-      <SEO title={"Top"} />
+      <SEO title={"Top"} path="/" />
       {data.allEsaPost.edges.map(({ node }, i) => (
         <Link
           rel="prefetch"

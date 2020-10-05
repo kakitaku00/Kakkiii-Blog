@@ -25,6 +25,7 @@ const Post = ({ data, pageContext }) => {
         title={post.name}
         description={description || " "}
         image={thumbnail}
+        path={`/posts/${post.number}`}
         article
       />
       <section>
