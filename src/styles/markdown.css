@@ -986,7 +986,7 @@
   vertical-align: middle;
 }
 
-/* ========== Markdown CSS ========== */
+/* ========== Add Markdown CSS ========== */
 
 .markdown-body ol {
   list-style: decimal;
@@ -994,4 +994,8 @@
 
 .markdown-body ul {
   list-style: disc;
+}
+
+.markdown-body img {
+  margin: 0 auto;
 }
