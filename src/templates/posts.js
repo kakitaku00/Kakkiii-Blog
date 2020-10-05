@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClock } from "@fortawesome/free-regular-svg-icons"
@@ -11,17 +12,18 @@ const Posts = ({ data, pageContext }) => {
   const postDataList = allPostHtml.map(html => {
     const defaultImageTag = `<img src="https://images.microcms-assets.io/protected/ap-northeast-1:f18fa8ff-5b5f-43d2-ac15-ec07384ec391/service/kakki-blog/media/PAK_MT9V9A6981_TP_V4.jpg" alt="">`
     const imageTag = html.match(/<img.*src=".*">/) || [defaultImageTag]
-    const src = imageTag[0].match(/https:\/\/.*\..{3}/).join(",")
+    const thumbnail = imageTag[0].match(/https:\/\/.*\..{3}/).join(",")
     const paragraph = html.match(/<p.*\/p>/) || ["none"]
-    const text = paragraph[0]
+    const description = paragraph[0]
       .replace(/<br>/g, "")
       .replace(/<p.*">/, "")
       .replace(/<\/.>/g, "")
-    return { src, text }
+    return { thumbnail, description }
   })
 
   return (
     <Layout>
+      <SEO title={"Top"} />
       {data.allEsaPost.edges.map(({ node }, i) => (
         <Link
           rel="prefetch"
@@ -32,14 +34,14 @@ const Posts = ({ data, pageContext }) => {
           <div
             className="w-full md:w-1/3 h-40 md:h-auto bg-cover"
             style={{
-              backgroundImage: `url(${postDataList[i].src})`,
+              backgroundImage: `url(${postDataList[i].thumbnail})`,
             }}
           ></div>
           <div className="w-full md:w-2/3 flex flex-col">
             <div className="px-4 md:px-6 py-4">
               <div className="font-bold text-xl mb-2">{node.name}</div>
               <div className="truncate text-gray-500 text-sm">
-                {postDataList[i].text}
+                {postDataList[i].description}
               </div>
             </div>
             <div className="px-4 md:px-6 pt-4 pb-3 mt-auto flex">
