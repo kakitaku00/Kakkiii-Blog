@@ -11,7 +11,7 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons"
 
-import "./layout.css"
+import "../styles/layout.css"
 import "../styles/tailwind.css"
 import "../styles/markdown.css"
 
