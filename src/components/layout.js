@@ -30,11 +30,11 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <div className="layout min-h-screen">
+    <div className="layout min-h-screen flex flex-col">
       <Header siteTitle={data.site.siteMetadata.title} />
       <main className="main">
         <div className="flex max-w-screen-xl mx-auto xl:px-24 lg:px-16 md:px-12 sm:px-8 px-4 md:py-12 py-4">
-          <div className="lg:posts w-full relative">{children}</div>
+          <div className="lg:w-posts w-full relative">{children}</div>
           <div
             className="hidden lg:block ml-8 flex-shrink-0"
             style={{ width: "300px" }}

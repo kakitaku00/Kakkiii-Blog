@@ -32,28 +32,6 @@ a {
   }
 }
 
-.layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 76px 1fr 76px;
-  grid-template-areas:
-    "header"
-    "contents"
-    "footer";
-}
-
-.header {
-  grid-area: header;
-}
-
-.main {
-  grid-area: contents;
-}
-
-.footer {
-  grid-area: footer;
-}
-
 .ellipsis-1,
 .ellipsis-2,
 .ellipsis-3 {
