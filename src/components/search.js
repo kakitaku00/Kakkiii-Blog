@@ -48,7 +48,7 @@ const Search = () => {
         <Link
           to={`/posts/${post.number}`}
           key={post.number}
-          className="search-item block rounded w-full h-full p-2 bg-white"
+          className="search-item block w-full h-auto p-2 bg-white break-all"
         >
           {post.name}
         </Link>
@@ -57,26 +57,24 @@ const Search = () => {
   )
 
   return (
-    <div className="shadow relative">
-      <form className="">
-        <label className="relative" htmlFor="search-input">
-          <span className="absolute top-1/2 left-2 transform -translate-y-1/2">
-            <FontAwesomeIcon icon={faSearch} />
-          </span>
-          <input
-            id="search-input"
-            className="w-full rounded p-2 pl-8"
-            type="text"
-            placeholder="記事を検索"
-            onChange={handleChange}
-            autoComplete="off"
-          />
-        </label>
-      </form>
+    <div className="relative">
+      <label className="relative" htmlFor="search-input">
+        <span className="absolute top-1/2 left-2 transform -translate-y-1/2">
+          <FontAwesomeIcon icon={faSearch} />
+        </span>
+        <input
+          id="search-input"
+          className="w-full p-2 pl-8 border-solid border-b border-gray-400"
+          type="text"
+          placeholder="Please enter the text"
+          onChange={handleChange}
+          autoComplete="off"
+        />
+      </label>
       {searchValue && (
         <div
-          className="absolute w-full top-100 right-0 z-10 rounded shadow"
-          style={{ width: 300 }}
+          className="absolute w-full top-100+1 right-0 z-10 rounded shadow-md overflow-y-auto"
+          style={{ maxHeight: 180 }}
         >
           {renderSearch()}
         </div>

@@ -52,7 +52,7 @@ const Post = ({ data, pageContext }) => {
           ))}
         </div>
         <div
-          className="markdown-body"
+          className="markdown-body pb-24 lg:pb-0"
           dangerouslySetInnerHTML={{
             __html:
               post.childrenEsaPostBodyMarkdown[0].childMarkdownRemark.html,
