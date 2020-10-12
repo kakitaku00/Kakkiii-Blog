@@ -997,5 +997,11 @@
 }
 
 .markdown-body img {
-  margin: 0 auto;
+  margin: 0 auto 16px;
+}
+
+@media screen and (max-width: 639px) {
+  .markdown-body {
+    font-size: 14px;
+  }
 }

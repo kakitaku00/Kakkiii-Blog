@@ -11,12 +11,13 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons"
 
-import "./layout.css"
+import "../styles/layout.css"
 import "../styles/tailwind.css"
 import "../styles/markdown.css"
 
 import Header from "./header"
 import Footer from "./footer"
+import Search from "./search"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -33,13 +34,10 @@ const Layout = ({ children }) => {
     <div className="layout min-h-screen flex flex-col">
       <Header siteTitle={data.site.siteMetadata.title} />
       <main className="main">
-        <div className="flex max-w-screen-xl mx-auto xl:px-24 lg:px-16 md:px-12 sm:px-8 px-4 md:py-12 py-4">
+        <div className="flex flex-col lg:flex-row max-w-screen-xl mx-auto xl:px-24 lg:px-16 md:px-12 sm:px-8 px-4 md:py-12 pb-4 pt-8">
           <div className="lg:w-posts w-full relative">{children}</div>
-          <div
-            className="hidden lg:block ml-8 flex-shrink-0"
-            style={{ width: "300px" }}
-          >
-            <div className="sticky top-2 hidden md:block">
+          <div className="lg:w-navi w-full lg:ml-8 lg:mt-0 mt-8 flex-shrink-0">
+            <div className="lg:sticky lg:top-2">
               <div className="p-4 mb-4 rounded shadow">
                 <div className="flex items-center mb-8">
                   <img
@@ -70,6 +68,11 @@ const Layout = ({ children }) => {
                   <div className="text-gray-600 text-sm">favorite</div>
                   Sumikko Gurashi
                 </div>
+              </div>
+
+              <div className="p-4 mb-4 rounded shadow">
+                <div className="mb-2 font-bold">Search Posts</div>
+                <Search />
               </div>
 
               <div className="p-4 mb-4 rounded shadow">
@@ -115,7 +118,7 @@ const Layout = ({ children }) => {
               </div>
 
               <div className="p-4 mb-4 rounded shadow">
-                <div className="mb-2 font-bold">Topics</div>
+                <div className="mb-2 font-bold">Pick Up Topics</div>
                 <ul className="flex">
                   <li>
                     <Link

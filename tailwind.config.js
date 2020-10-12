@@ -20,7 +20,11 @@ module.exports = {
     extend: {
       width: {
         posts: "calc(100% - 332px)",
+        navi: "300px",
         "1/2-8": "calc(50% - 1rem)",
+      },
+      inset: {
+        "100+1": "calc(100% + 1px)",
       },
     },
   },
