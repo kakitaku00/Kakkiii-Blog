@@ -25,6 +25,10 @@ const Search = () => {
   const [searchIndex, setSearchIndex] = useState(-1)
   const [isFocus, updateIsFocus] = useState(false)
 
+  const searchList = document.querySelector(".search-list")
+  const searchListMaxView = 5
+  const searchListItemHeight = 40
+
   const keyCodes = {
     DOWN: 40,
     ENTER: 13,
@@ -35,10 +39,6 @@ const Search = () => {
     const data = queryPostsData.allEsaPost.edges.map(post => post.node)
     setPostsData(data)
   }, [])
-
-  useEffect(() => {
-    selectPost()
-  }, [searchIndex])
 
   const handleChange = e => {
     setSearchIndex(-1)
@@ -54,14 +54,23 @@ const Search = () => {
     setSearchValue(value)
   }
 
-  const selectPost = () => {
+  const selectPost = currentIndex => {
     const items = document.querySelectorAll(".search-item")
     items.forEach((item, index) => {
       item.setAttribute("aria-selected", "false")
-      if (searchIndex === index) {
+      if (currentIndex === index) {
         item.setAttribute("aria-selected", "true")
       }
     })
+    setSearchIndex(currentIndex)
+  }
+
+  const handleScroll = index => {
+    const height = searchList.getBoundingClientRect().height
+    const targetIndex = index + 1
+    if (height / searchListItemHeight < targetIndex) {
+      searchList.scrollTop = 40 * (targetIndex - height / searchListItemHeight)
+    }
   }
 
   const handleFocus = () => {
@@ -73,12 +82,14 @@ const Search = () => {
   const handleKeyDown = e => {
     switch (e.keyCode) {
       case keyCodes.UP:
-        setSearchIndex(Math.max(searchIndex - 1, -1))
         e.preventDefault()
+        selectPost(Math.max(searchIndex - 1, -1))
+        handleScroll(Math.max(searchIndex - 1, -1))
         break
       case keyCodes.DOWN:
-        setSearchIndex(Math.min(searchIndex + 1, resultData.length - 1))
         e.preventDefault()
+        selectPost(Math.min(searchIndex + 1, resultData.length - 1))
+        handleScroll(Math.min(searchIndex + 1, resultData.length - 1))
         break
       case keyCodes.ENTER:
         if (searchIndex < 0) {
@@ -99,7 +110,7 @@ const Search = () => {
           className="search-item block w-full h-auto p-2 bg-white break-all"
           aria-selected="false"
           data-index={index}
-          onMouseOver={() => setSearchIndex(index)}
+          onMouseOver={() => selectPost(index)}
         >
           {post.name}
         </Link>
@@ -125,14 +136,12 @@ const Search = () => {
           onKeyDown={handleKeyDown}
         />
       </label>
-      {searchValue && isFocus && (
-        <div
-          className="absolute w-full top-100+1 right-0 z-10 rounded shadow-md overflow-y-auto"
-          style={{ maxHeight: 180 }}
-        >
-          {renderSearch()}
-        </div>
-      )}
+      <div
+        className="search-list absolute w-full top-100+1 right-0 z-10 rounded shadow-md overflow-y-auto"
+        style={{ maxHeight: 200 }}
+      >
+        {searchValue && isFocus && renderSearch()}
+      </div>
     </div>
   )
 }
