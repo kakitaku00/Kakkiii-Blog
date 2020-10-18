@@ -23,10 +23,10 @@ const Search = () => {
   const [postsData, setPostsData] = useState([])
   const [resultData, setResultData] = useState([])
   const [searchIndex, setSearchIndex] = useState(-1)
+  const [keyScrollCount, setKeyScrollCount] = useState(0)
   const [isFocus, updateIsFocus] = useState(false)
 
   const searchList = document.querySelector(".search-list")
-  const searchListMaxView = 5
   const searchListItemHeight = 40
 
   const keyCodes = {
@@ -42,6 +42,7 @@ const Search = () => {
 
   const handleChange = e => {
     setSearchIndex(-1)
+    setKeyScrollCount(0)
     bindSearch(e.target.value)
   }
 
@@ -65,11 +66,23 @@ const Search = () => {
     setSearchIndex(currentIndex)
   }
 
-  const handleScroll = index => {
+  const handleScroll = (index, keyCode) => {
     const height = searchList.getBoundingClientRect().height
     const targetIndex = index + 1
-    if (height / searchListItemHeight < targetIndex) {
+    if (
+      keyCode === keyCodes.DOWN &&
+      height / searchListItemHeight < targetIndex
+    ) {
+      setKeyScrollCount(
+        Math.min(
+          keyScrollCount + 1,
+          resultData.length - height / searchListItemHeight
+        )
+      )
       searchList.scrollTop = 40 * (targetIndex - height / searchListItemHeight)
+    } else if (keyCode === keyCodes.UP && keyScrollCount === targetIndex) {
+      setKeyScrollCount(Math.max(keyScrollCount - 1, 0))
+      searchList.scrollTop = 40 * (keyScrollCount - 1)
     }
   }
 
@@ -84,12 +97,15 @@ const Search = () => {
       case keyCodes.UP:
         e.preventDefault()
         selectPost(Math.max(searchIndex - 1, -1))
-        handleScroll(Math.max(searchIndex - 1, -1))
+        handleScroll(Math.max(searchIndex - 1, -1), e.keyCode)
         break
       case keyCodes.DOWN:
         e.preventDefault()
         selectPost(Math.min(searchIndex + 1, resultData.length - 1))
-        handleScroll(Math.min(searchIndex + 1, resultData.length - 1))
+        handleScroll(
+          Math.min(searchIndex + 1, resultData.length - 1),
+          e.keyCode
+        )
         break
       case keyCodes.ENTER:
         if (searchIndex < 0) {
@@ -107,7 +123,8 @@ const Search = () => {
         <Link
           to={`/posts/${post.number}`}
           key={post.number}
-          className="search-item block w-full h-auto p-2 bg-white break-all"
+          className="search-item block w-full h-auto px-2 leading-10 bg-white break-all ellipsis-1"
+          title={post.name}
           aria-selected="false"
           data-index={index}
           onMouseOver={() => selectPost(index)}
@@ -137,7 +154,7 @@ const Search = () => {
         />
       </label>
       <div
-        className="search-list absolute w-full top-100+1 right-0 z-10 rounded shadow-md overflow-y-auto"
+        className="search-list absolute w-full md:w-search top-100+1 right-0 z-10 rounded shadow-md overflow-y-auto"
         style={{ maxHeight: 200 }}
       >
         {searchValue && isFocus && renderSearch()}
