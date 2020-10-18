@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { graphql, useStaticQuery, Link, navigate } from "gatsby"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -26,7 +26,7 @@ const Search = () => {
   const [keyScrollCount, setKeyScrollCount] = useState(0)
   const [isFocus, updateIsFocus] = useState(false)
 
-  const searchList = document.querySelector(".search-list")
+  const searchListRef = useRef(null)
   const searchListItemHeight = 40
 
   const keyCodes = {
@@ -67,6 +67,7 @@ const Search = () => {
   }
 
   const handleScroll = (index, keyCode) => {
+    const searchList = searchListRef.current
     const height = searchList.getBoundingClientRect().height
     const targetIndex = index + 1
     if (
@@ -155,6 +156,7 @@ const Search = () => {
       </label>
       <div
         className="search-list absolute w-full md:w-search top-100+1 right-0 z-10 rounded shadow-md overflow-y-auto"
+        ref={searchListRef}
         style={{ maxHeight: 200 }}
       >
         {searchValue && isFocus && renderSearch()}
