@@ -38,12 +38,12 @@ const Contact = () => {
   return (
     <Layout>
       <SEO title="Contact" path="/contact" />
-      <h2 className="text-3xl font-bold mb-4">お問い合わせ</h2>
+      <h2 className="text-xl md:text-3xl font-bold mb-4">お問い合わせ</h2>
       <p className="mb-4">
         ご依頼・お問い合わせなどございましたら、下記よりお気軽にご連絡ください。
       </p>
       <form
-        className="bg-white shadow p-4 md:p-8 rounded"
+        className="bg-white shadow py-4 px-2 md:p-8 rounded"
         onSubmit={handleSubmit}
       >
         <div className="mb-4">

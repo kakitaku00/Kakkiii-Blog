@@ -8,7 +8,7 @@ const Thanks = () => {
   return (
     <Layout>
       <SEO title="Thanks" path="/thanks" />
-      <h2 className="text-3xl font-bold mb-4">お問い合わせ</h2>
+      <h2 className="text-xl md:text-3xl font-bold mb-4">お問い合わせ</h2>
       <p className="mb-4">お問い合わせありがとうございました。</p>
       <Link to={`/`} className="text-teal-500">
         HOME
