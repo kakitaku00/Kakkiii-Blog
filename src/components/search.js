@@ -38,6 +38,7 @@ const Search = () => {
   useEffect(() => {
     const data = queryPostsData.allEsaPost.edges.map(post => post.node)
     setPostsData(data)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleChange = e => {
@@ -115,6 +116,8 @@ const Search = () => {
         navigate(`/posts/${resultData[searchIndex].number}`)
         setSearchValue("")
         break
+      default:
+        break
     }
   }
 
@@ -128,6 +131,7 @@ const Search = () => {
           title={post.name}
           aria-selected="false"
           data-index={index}
+          onMouseDown={e => e.preventDefault()}
           onMouseOver={() => selectPost(index)}
         >
           {post.name}

@@ -13,7 +13,7 @@ const sideNavigation = () => (
           <img
             className="w-16 h-16 block rounded-full"
             src="https://avatars0.githubusercontent.com/u/36177545?s=460&amp;v=4"
-            alt="profile image"
+            alt="profile"
           />
           <div className="ml-2 p-2">
             <div className="mb-2 text-lg font-bold">Kakkiii00</div>

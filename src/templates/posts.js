@@ -20,7 +20,7 @@ const Posts = ({ pageContext }) => {
 
   // Pagination
   const previousUrl =
-    index - 1 == 1
+    index - 1 === 1
       ? `${path[type]}`
       : `${path[type]}page/${(index - 1).toString()}`
   const nextUrl = `${path[type]}page/${(index + 1).toString()}`
