@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -7,8 +7,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClock } from "@fortawesome/free-regular-svg-icons"
 import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 
-const Posts = ({ data, pageContext }) => {
-  const allPostHtml = data.allEsaPost.edges.map(({ node }) => node.body_html)
+const Posts = ({ pageContext }) => {
+  const { group, index, first, last, additionalContext } = pageContext
+  const { type, tag, category } = additionalContext
+  const allPostHtml = group.map(({ node }) => node.body_html)
+
+  const path = {
+    default: "/",
+    category: `/category/${category}/`,
+    tags: `/tags/${tag}/`,
+  }
+
+  // Pagination
+  const previousUrl =
+    index - 1 == 1
+      ? `${path[type]}`
+      : `${path[type]}page/${(index - 1).toString()}`
+  const nextUrl = `${path[type]}page/${(index + 1).toString()}`
+
+  // thumbnail or description
   const postDataList = allPostHtml.map(html => {
     const defaultImageTag = `<img src="https://images.microcms-assets.io/protected/ap-northeast-1:f18fa8ff-5b5f-43d2-ac15-ec07384ec391/service/kakki-blog/media/PAK_MT9V9A6981_TP_V4.jpg" alt="">`
     const imageTag = html.match(/<img.*src=".*">/) || [defaultImageTag]
@@ -21,11 +38,33 @@ const Posts = ({ data, pageContext }) => {
     return { thumbnail, description }
   })
 
+  // SEO DATA
+  const SEO_DATA = {
+    default: {
+      title: `TOP`,
+      path: path[type],
+    },
+    category: {
+      title: `${category} に関するページ`,
+      path: path[type],
+    },
+    tags: {
+      title: `${tag} に関するページ`,
+      path: path[type],
+    },
+  }
+
   return (
     <Layout>
-      <SEO title={"Top"} path="/" />
+      <SEO title={SEO_DATA[type].title} path={SEO_DATA[type].path} />
+      {(category || tag) && (
+        <div className="py-4 mb-4 text-center">
+          <span className="font-bold text-3xl">{category || tag}</span>{" "}
+          に関するページ
+        </div>
+      )}
       <div className="flex flex-wrap justify-between">
-        {data.allEsaPost.edges.map(({ node }, i) => (
+        {group.map(({ node }, i) => (
           <Link
             rel="prefetch"
             to={`/posts/${node.number}`}
@@ -74,26 +113,15 @@ const Posts = ({ data, pageContext }) => {
         ))}
       </div>
       <div className="flex py-2">
-        {!pageContext.isFirst && (
-          <Link
-            to={
-              pageContext.currentPage === 2
-                ? `/`
-                : `/page/${pageContext.currentPage - 1}`
-            }
-            rel="prev"
-          >
+        {!first && (
+          <Link to={previousUrl} rel="prev">
             <FontAwesomeIcon icon={faAngleLeft} className="mr-1" />
             prev
           </Link>
         )}
 
-        {!pageContext.isLast && (
-          <Link
-            to={`/page/${pageContext.currentPage + 1}/`}
-            rel="next"
-            className="ml-auto"
-          >
+        {!last && (
+          <Link to={nextUrl} rel="next" className="ml-auto">
             next
             <FontAwesomeIcon icon={faAngleRight} className="ml-1" />
           </Link>
@@ -104,26 +132,3 @@ const Posts = ({ data, pageContext }) => {
 }
 
 export default Posts
-
-export const query = graphql`
-  query($skip: Int!, $limit: Int!) {
-    allEsaPost(
-      sort: { fields: number, order: DESC }
-      limit: $limit
-      skip: $skip
-    ) {
-      edges {
-        node {
-          number
-          name
-          body_md
-          body_html
-          category
-          tags
-          created_at
-          updated_at
-        }
-      }
-    }
-  }
-`

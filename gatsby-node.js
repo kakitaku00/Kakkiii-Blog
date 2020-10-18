@@ -12,7 +12,6 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   const postTemplate = path.resolve("./src/templates/post.js")
   const postsTemplate = path.resolve("./src/templates/posts.js")
-  const searchedTemplate = path.resolve("./src/templates/searched.js")
 
   return graphql(`
     {
@@ -42,7 +41,6 @@ exports.createPages = ({ graphql, actions }) => {
       const post = edge.node
       const number = post.number
       const category = post.category.replace(/blog\//, "") || "blog"
-      console.log("category", category)
 
       post.tags.forEach(tag => {
         tagMap.set(
@@ -52,7 +50,6 @@ exports.createPages = ({ graphql, actions }) => {
       })
 
       const numbersByCategory = categoryMap.get(category)
-      console.log("numberByCategory", numbersByCategory)
       categoryMap.set(
         category,
         numbersByCategory ? numbersByCategory.concat(number) : [number]
@@ -61,6 +58,9 @@ exports.createPages = ({ graphql, actions }) => {
       postEntities[post.number] = edge
     })
 
+    /**
+     * Template Post.js
+     */
     allEsaPost.edges.forEach(edge => {
       const number = edge.node.number
       const category = edge.node.category.replace(/blog\//, "") || "blog"
@@ -75,31 +75,30 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
 
+    /**
+     * Template Posts.js
+     */
     const blogPostPerPage = 6
-    const blogPosts = allEsaPost.edges.length
-    const blogPages = Math.ceil(blogPosts / blogPostPerPage)
 
-    Array.from({ length: blogPages }).forEach((_, i) => {
-      createPage({
-        path: i === 0 ? `/` : `/page/${i + 1}`,
-        component: postsTemplate,
-        context: {
-          skip: blogPostPerPage * i,
-          limit: blogPostPerPage,
-          currentPage: i + 1,
-          isFirst: i + 1 === 1,
-          isLast: i + 1 === blogPages,
-        },
-      })
+    createPaginatedPages({
+      edges: result.data.allEsaPost.edges,
+      createPage,
+      pageTemplate: postsTemplate,
+      pageLength: blogPostPerPage,
+      pathPrefix: `/`,
+      buildPath: (index, pathPrefix) =>
+        index > 1 ? `/page/${index}` : `${pathPrefix}`,
+      context: {
+        type: "default",
+      },
     })
 
     Array.from(categoryMap.keys()).map(category => {
       const postNumbers = categoryMap.get(category)
-      console.log("postNumbers", postNumbers)
       createPaginatedPages({
         edges: postNumbers.map(number => postEntities[number]),
         createPage,
-        pageTemplate: searchedTemplate,
+        pageTemplate: postsTemplate,
         pageLength: blogPostPerPage,
         pathPrefix: `category/${category}`,
         buildPath: (index, pathPrefix) =>
@@ -116,7 +115,7 @@ exports.createPages = ({ graphql, actions }) => {
       createPaginatedPages({
         edges: postNumbers.map(number => postEntities[number]),
         createPage,
-        pageTemplate: searchedTemplate,
+        pageTemplate: postsTemplate,
         pageLength: blogPostPerPage,
         pathPrefix: `tags/${tag}`,
         buildPath: (index, pathPrefix) =>
