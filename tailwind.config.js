@@ -21,6 +21,7 @@ module.exports = {
       width: {
         posts: "calc(100% - 332px)",
         navi: "300px",
+        search: "400px",
         "1/2-8": "calc(50% - 1rem)",
       },
       inset: {

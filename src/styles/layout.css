@@ -52,6 +52,6 @@ a {
   -webkit-line-clamp: 3;
 }
 
-.search-item:hover {
+.search-item[aria-selected="true"] {
   background: #edf2f7;
 }
