@@ -69,12 +69,14 @@ const Search = () => {
   }
 
   const handleScroll = (index, keyCode) => {
-    const searchList = searchListRef.current
-    const height = searchList.getBoundingClientRect().height
+    // searchListItemHeight ... 40
+    // keyScrollCount ... keyDown/Upをした回数（最小:0 最大:表示数 - 5）
+    const searchList = searchListRef.current // DOM
+    const height = searchList.getBoundingClientRect().height // 200
     const targetIndex = index + 1
     if (
       keyCode === keyCodes.DOWN &&
-      height / searchListItemHeight < targetIndex
+      height / searchListItemHeight < targetIndex // targetIndexが6以上
     ) {
       setKeyScrollCount(
         Math.min(
@@ -82,10 +84,12 @@ const Search = () => {
           resultData.length - height / searchListItemHeight
         )
       )
-      searchList.scrollTop = 40 * (targetIndex - height / searchListItemHeight)
+      searchList.scrollTop =
+        searchListItemHeight * (targetIndex - height / searchListItemHeight)
     } else if (keyCode === keyCodes.UP && keyScrollCount === targetIndex) {
+      // スクロールした回数と選択中のindexが同じ場合に下記を実行
       setKeyScrollCount(Math.max(keyScrollCount - 1, 0))
-      searchList.scrollTop = 40 * (keyScrollCount - 1)
+      searchList.scrollTop = searchListItemHeight * (keyScrollCount - 1)
     }
   }
 
