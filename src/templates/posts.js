@@ -57,10 +57,16 @@ const Posts = ({ pageContext }) => {
   return (
     <Layout>
       <SEO title={SEO_DATA[type].title} path={SEO_DATA[type].path} />
-      {(category || tag) && (
-        <div className="py-4 mb-4 text-center">
-          <span className="font-bold text-3xl">{category || tag}</span>{" "}
-          に関するページ
+      {category && (
+        <div className="mb-6">
+          <span className="font-bold md:text-3xl text-xl mr-2">{category}</span>
+          category post list
+        </div>
+      )}
+      {tag && (
+        <div className="mb-6">
+          <span className="font-bold md:text-3xl text-xl mr-2">{tag}</span>
+          topic post list
         </div>
       )}
       <div className="flex flex-wrap justify-between">

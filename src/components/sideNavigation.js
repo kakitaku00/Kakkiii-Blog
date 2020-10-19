@@ -19,13 +19,17 @@ const sideNavigation = () => (
             <div className="mb-2 text-lg font-bold">Kakkiii00</div>
             <div className="flex">
               <Link rel="prefetch" to={`#`} className="inline-block">
-                <FontAwesomeIcon icon={faTwitter} className="text-2xl mr-1" />
+                <FontAwesomeIcon icon={faTwitter} className="text-2xl mr-2" />
               </Link>
               <Link rel="prefetch" to={`#`} className="inline-block">
                 <FontAwesomeIcon icon={faGithub} className="text-2xl" />
               </Link>
             </div>
           </div>
+        </div>
+        <div className="mb-4">
+          <div className="text-gray-600 text-sm">about this blog</div>
+          Maiking ...
         </div>
         <div className="mb-4">
           <div className="text-gray-600 text-sm">works</div>
