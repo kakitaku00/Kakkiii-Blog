@@ -49,7 +49,8 @@ const Search = () => {
 
   const bindSearch = value => {
     const filterData = postsData.filter(post => {
-      return post.name.includes(value)
+      const postName = `${post.name} ${post.tags.join("")}`.toLowerCase()
+      return postName.includes(value.trim().toLowerCase())
     })
 
     setResultData(filterData)
@@ -159,7 +160,7 @@ const Search = () => {
         />
       </label>
       <div
-        className="search-list absolute w-full md:w-search top-100+1 right-0 z-10 rounded shadow-md overflow-y-auto"
+        className="search-list absolute w-full lg:w-search top-100+1 right-0 z-10 rounded shadow-md overflow-y-auto"
         ref={searchListRef}
         style={{ maxHeight: 200 }}
       >
