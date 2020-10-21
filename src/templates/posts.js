@@ -18,6 +18,13 @@ const Posts = ({ pageContext }) => {
     tags: `/tags/${tag}/`,
   }
 
+  const defaultThumbnail = {
+    blog: "/images/blog.jpg",
+    web: "/images/web.jpg",
+    hobby: "/images/hobby.jpg",
+    other: "/images/other.jpg",
+  }
+
   // Pagination
   const previousUrl =
     index - 1 === 1
@@ -25,12 +32,24 @@ const Posts = ({ pageContext }) => {
       : `${path[type]}page/${(index - 1).toString()}`
   const nextUrl = `${path[type]}page/${(index + 1).toString()}`
 
+  allPostHtml.map(html => {
+    console.log(typeof html)
+    // console.log(html)
+  })
+
   // thumbnail or description
-  const postDataList = allPostHtml.map(html => {
-    const defaultImageTag = `<img src="https://images.microcms-assets.io/protected/ap-northeast-1:f18fa8ff-5b5f-43d2-ac15-ec07384ec391/service/kakki-blog/media/PAK_MT9V9A6981_TP_V4.jpg" alt="">`
-    const imageTag = html.match(/<img.*src=".*">/) || [defaultImageTag]
-    const thumbnail = imageTag[0].match(/https:\/\/.*\..{3}/).join(",")
-    const paragraph = html.match(/<p.*\/p>/) || ["none"]
+  const postDataList = group.map(({ node }) => {
+    const category =
+      node.category === "blog"
+        ? "blog"
+        : node.category.replace("blog/", "").toLowerCase()
+    const imageTag = node.body_html.match(/<img.*src=".*">/) || [
+      `<img src="${defaultThumbnail[category]}" alt="">`,
+    ]
+    const thumbnail = imageTag[0].includes("https")
+      ? imageTag[0].match(/https:\/\/.*\..{3}/).join(",")
+      : defaultThumbnail[category]
+    const paragraph = node.body_html.match(/<p.*\/p>/) || ["none"]
     const description = paragraph[0]
       .replace(/<br>/g, "")
       .replace(/<p.*">/, "")

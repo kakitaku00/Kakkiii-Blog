@@ -7,10 +7,20 @@ const Post = ({ data, pageContext }) => {
   const { category } = pageContext
   const post = data.esaPost
 
+  const defaultThumbnail = {
+    blog: "/images/blog.jpg",
+    web: "/images/web.jpg",
+    hobby: "/images/hobby.jpg",
+    other: "/images/other.jpg",
+  }
+
   // thumbnail
-  const defaultImageSrc = `https://images.microcms-assets.io/protected/ap-northeast-1:f18fa8ff-5b5f-43d2-ac15-ec07384ec391/service/kakki-blog/media/PAK_MT9V9A6981_TP_V4.jpg`
-  const imageTag = post.body_html.match(/<img.*src=".*">/) || [defaultImageSrc]
-  const thumbnail = imageTag[0].match(/https:\/\/.*\..{3}/).join(",")
+  const imageTag = post.body_html.match(/<img.*src=".*">/) || [
+    `<img src="${defaultThumbnail[category.toLowerCase()]}" alt="">`,
+  ]
+  const thumbnail = imageTag[0].includes("https")
+    ? imageTag[0].match(/https:\/\/.*\..{3}/).join(",")
+    : defaultThumbnail[category.toLowerCase()]
 
   // description
   const paragraph = post.body_html.match(/<p.*\/p>/) || ["none"]
