@@ -32,11 +32,6 @@ const Posts = ({ pageContext }) => {
       : `${path[type]}page/${(index - 1).toString()}`
   const nextUrl = `${path[type]}page/${(index + 1).toString()}`
 
-  allPostHtml.map(html => {
-    console.log(typeof html)
-    // console.log(html)
-  })
-
   // thumbnail or description
   const postDataList = group.map(({ node }) => {
     const category =
