@@ -25,7 +25,11 @@ const sideNavigation = () => (
                 rel="noopener noreferrer"
                 rel="prefetch"
               >
-                <FontAwesomeIcon icon={faTwitter} className="text-2xl" />
+                <FontAwesomeIcon
+                  icon={faTwitter}
+                  className="text-2xl"
+                  aria-hidden="true"
+                />
               </a>
               <a
                 href="https://github.com/kakitaku00"
@@ -34,7 +38,11 @@ const sideNavigation = () => (
                 rel="noopener noreferrer"
                 rel="prefetch"
               >
-                <FontAwesomeIcon icon={faGithub} className="text-2xl" />
+                <FontAwesomeIcon
+                  icon={faGithub}
+                  className="text-2xl"
+                  aria-hidden="true"
+                />
               </a>
             </div>
           </div>
