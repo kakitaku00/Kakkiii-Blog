@@ -18,12 +18,24 @@ const sideNavigation = () => (
           <div className="ml-2 p-2">
             <div className="mb-2 text-lg font-bold">Kakkiii00</div>
             <div className="flex">
-              <Link rel="prefetch" to={`#`} className="inline-block">
+              <a
+                href="https://twitter.com/kakkiii00"
+                className="inline-block mr-2"
+                target="_blank"
+                rel="noopener noreferrer"
+                rel="prefetch"
+              >
                 <FontAwesomeIcon icon={faTwitter} className="text-2xl mr-2" />
-              </Link>
-              <Link rel="prefetch" to={`#`} className="inline-block">
+              </a>
+              <a
+                href="https://github.com/kakitaku00"
+                className="inline-block"
+                target="_blank"
+                rel="noopener noreferrer"
+                rel="prefetch"
+              >
                 <FontAwesomeIcon icon={faGithub} className="text-2xl" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>
