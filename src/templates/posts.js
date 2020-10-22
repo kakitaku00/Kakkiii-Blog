@@ -25,16 +25,37 @@ const Posts = ({ pageContext }) => {
       : `${path[type]}page/${(index - 1).toString()}`
   const nextUrl = `${path[type]}page/${(index + 1).toString()}`
 
-  // thumbnail or description
-  const postDataList = allPostHtml.map(html => {
-    const defaultImageTag = `<img src="https://images.microcms-assets.io/protected/ap-northeast-1:f18fa8ff-5b5f-43d2-ac15-ec07384ec391/service/kakki-blog/media/PAK_MT9V9A6981_TP_V4.jpg" alt="">`
-    const imageTag = html.match(/<img.*src=".*">/) || [defaultImageTag]
-    const thumbnail = imageTag[0].match(/https:\/\/.*\..{3}/).join(",")
-    const paragraph = html.match(/<p.*\/p>/) || ["none"]
+  // サムネイル
+  const defaultThumbnail = {
+    blog: "/images/blog.jpg",
+    web: "/images/web.jpg",
+    hobby: "/images/hobby.jpg",
+    other: "/images/other.jpg",
+  }
+
+  // thumbnail and description
+  const postDataList = group.map(({ node }) => {
+    /** node.category = 'blog' or 'blog/web' */
+    const category =
+      node.category === "blog"
+        ? "blog"
+        : node.category.replace("blog/", "").toLowerCase()
+    /** htmlの最初のimgタグを正規表現で取得、なければdefaultThumbnailのimgタグを配列に格納 */
+    const imageTag = node.body_html.match(/<img.*src=".*">/) || [
+      `<img src="${defaultThumbnail[category]}" alt="">`,
+    ]
+    /** imgタグのsrcにhttpsが含まれていれば正規表現でURLを取得、httpsでなければ静的ファイルから取得 */
+    const thumbnail = imageTag[0].includes("https")
+      ? imageTag[0].match(/https:\/\/.*\..{3}/).join(",")
+      : defaultThumbnail[category]
+    /** 本文中の最初の<p>を取得 */
+    const paragraph = node.body_html.match(/<p.*\/p>/) || ["none"]
+    /** <p>タグ内の<br>タグを取り除いたテキストを格納 */
     const description = paragraph[0]
       .replace(/<br>/g, "")
       .replace(/<p.*">/, "")
       .replace(/<\/.>/g, "")
+
     return { thumbnail, description }
   })
 
