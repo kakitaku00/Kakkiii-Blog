@@ -25,7 +25,7 @@ const sideNavigation = () => (
                 rel="noopener noreferrer"
                 rel="prefetch"
               >
-                <FontAwesomeIcon icon={faTwitter} className="text-2xl mr-2" />
+                <FontAwesomeIcon icon={faTwitter} className="text-2xl" />
               </a>
               <a
                 href="https://github.com/kakitaku00"
