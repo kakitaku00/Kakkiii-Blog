@@ -14,16 +14,18 @@ const Post = ({ data, pageContext }) => {
     other: "/images/other.jpg",
   }
 
-  // thumbnail
+  /** htmlの最初のimgタグを正規表現で取得、なければdefaultThumbnailのimgタグを配列に格納 */
   const imageTag = post.body_html.match(/<img.*src=".*">/) || [
     `<img src="${defaultThumbnail[category.toLowerCase()]}" alt="">`,
   ]
+  /** imgタグのsrcにhttpsが含まれていれば正規表現でURLを取得、httpsでなければ静的ファイルから取得 */
   const thumbnail = imageTag[0].includes("https")
     ? imageTag[0].match(/https:\/\/.*\..{3}/).join(",")
     : defaultThumbnail[category.toLowerCase()]
 
-  // description
+  /** 本文中の最初の<p>を取得 */
   const paragraph = post.body_html.match(/<p.*\/p>/) || ["none"]
+  /** <p>タグ内の<br>タグを取り除いたテキストを格納 */
   const description = paragraph[0]
     .replace(/<br>/g, "")
     .replace(/<p.*">/, "")
