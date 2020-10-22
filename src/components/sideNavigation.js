@@ -31,23 +31,19 @@ const sideNavigation = () => (
           <div className="text-gray-600 text-sm">about this blog</div>
           Maiking ...
         </div>
-        <div className="mb-4">
+        <div className="">
           <div className="text-gray-600 text-sm">works</div>
           Front end engineer
-        </div>
-        <div className="">
-          <div className="text-gray-600 text-sm">favorite</div>
-          Sumikko Gurashi
         </div>
       </div>
 
       <div className="p-4 mb-4 rounded shadow">
-        <div className="mb-2 font-bold">Search Posts</div>
+        <div className="mb-3 font-bold">Search Posts</div>
         <Search />
       </div>
 
       <div className="p-4 mb-4 rounded shadow">
-        <div className="mb-2 font-bold">Category</div>
+        <div className="mb-3 font-bold">Category</div>
         <ul>
           <li>
             <Link
@@ -88,14 +84,14 @@ const sideNavigation = () => (
         </ul>
       </div>
 
-      <div className="p-4 mb-4 rounded shadow">
-        <div className="mb-2 font-bold">Pick Up Topics</div>
-        <ul className="flex">
+      <div className="p-4 pb-3 mb-4 rounded shadow">
+        <div className="mb-3 font-bold">Pick Up Topics</div>
+        <ul className="flex flex-wrap">
           <li>
             <Link
               rel="prefetch"
               to={`/tags/test`}
-              className="inline-block bg-gray-200 rounded-full px-3 py-1 mb-1 text-xs md:text-sm font-semibold text-gray-700 mr-2"
+              className="inline-block bg-gray-200 rounded-full px-3 py-1 mb-2 text-xs md:text-sm font-semibold text-gray-700 mr-2"
             >
               #test
             </Link>
@@ -104,7 +100,7 @@ const sideNavigation = () => (
             <Link
               rel="prefetch"
               to={`/tags/sample`}
-              className="inline-block bg-gray-200 rounded-full px-3 py-1 mb-1 text-xs md:text-sm font-semibold text-gray-700 mr-2"
+              className="inline-block bg-gray-200 rounded-full px-3 py-1 mb-2 text-xs md:text-sm font-semibold text-gray-700 mr-2"
             >
               #sample
             </Link>
