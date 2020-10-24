@@ -47,21 +47,24 @@ const Contact = () => {
         onSubmit={handleSubmit}
       >
         <div className="mb-4">
-          <label className="block">
+          <label for="name" className="block">
             <span className="block text-gray-700 mb-2">お名前</span>
             <input
+              id="name"
               type="text"
               className="form-input py-1 px-2 block w-full border"
               placeholder="お名前"
               name="name"
               onChange={handleChange}
+              autoFocus
             />
           </label>
         </div>
         <div className="mb-4">
-          <label className="block">
+          <label for="email" className="block">
             <span className="block text-gray-700 mb-2">メールアドレス</span>
             <input
+              id="email"
               type="email"
               className="form-input py-1 px-2 block w-full border"
               placeholder="メールアドレス"
@@ -71,9 +74,10 @@ const Contact = () => {
           </label>
         </div>
         <div className="mb-4">
-          <label className="block">
+          <label for="body" className="block">
             <span className="block text-gray-700 mb-2">メッセージ</span>
             <textarea
+              id="body"
               className="form-textarea py-1 px-2 block w-full border"
               rows="5"
               placeholder="メッセージ"
