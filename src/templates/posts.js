@@ -10,7 +10,6 @@ import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 const Posts = ({ pageContext }) => {
   const { group, index, first, last, additionalContext } = pageContext
   const { type, tag, category } = additionalContext
-  const allPostHtml = group.map(({ node }) => node.body_html)
 
   const path = {
     default: "/",
@@ -25,29 +24,35 @@ const Posts = ({ pageContext }) => {
       : `${path[type]}page/${(index - 1).toString()}`
   const nextUrl = `${path[type]}page/${(index + 1).toString()}`
 
-  // サムネイル
+  // TODO: 本番運用開始後したらkey名を変更する blog => Blog, web => Web
+  // デフォルトサムネイル
   const defaultThumbnail = {
-    blog: "/images/blog.jpg",
-    web: "/images/web.jpg",
-    hobby: "/images/hobby.jpg",
-    other: "/images/other.jpg",
+    blog:
+      "https://img.esa.io/uploads/production/attachments/9793/2020/10/24/40874/cefc4d08-06de-4f9a-b352-e14752e802e5.png",
+    web:
+      "https://img.esa.io/uploads/production/attachments/9793/2020/10/24/40874/ed2ae041-4f61-4b1c-a442-baf0d81ef618.png",
+    hobby:
+      "https://img.esa.io/uploads/production/attachments/9793/2020/10/24/40874/ed2ae041-4f61-4b1c-a442-baf0d81ef618.png",
+    other:
+      "https://img.esa.io/uploads/production/attachments/9793/2020/10/24/40874/82b15b20-5320-4aff-bd66-3f6e24200e80.png",
   }
 
   // thumbnail and description
   const postDataList = group.map(({ node }) => {
+    // TODO: 本番運用開始後したらBlogとなるので処理を修正する
     /** node.category = 'blog' or 'blog/web' */
     const category =
       node.category === "blog"
         ? "blog"
         : node.category.replace("blog/", "").toLowerCase()
-    /** htmlの最初のimgタグを正規表現で取得、なければdefaultThumbnailのimgタグを配列に格納 */
-    const imageTag = node.body_html.match(/<img.*src=".*">/) || [
-      `<img src="${defaultThumbnail[category]}" alt="">`,
-    ]
-    /** imgタグのsrcにhttpsが含まれていれば正規表現でURLを取得、httpsでなければ静的ファイルから取得 */
-    const thumbnail = imageTag[0].includes("https")
+
+    /** htmlの最初のimgタグを正規表現で取得、なければnullを格納 */
+    const imageTag = node.body_html.match(/<img.*src=".*">/) || null
+    /** imgタグから正規表現でURLを取得、imgタグがnullならデフォルトサムネイルを取得 */
+    const thumbnail = imageTag
       ? imageTag[0].match(/https:\/\/.*\..{3}/).join(",")
       : defaultThumbnail[category]
+
     /** 本文中の最初の<p>を取得 */
     const paragraph = node.body_html.match(/<p.*\/p>/) || ["none"]
     /** <p>タグ内の<br>タグを取り除いたテキストを格納 */
@@ -56,7 +61,7 @@ const Posts = ({ pageContext }) => {
       .replace(/<p.*">/, "")
       .replace(/<\/.>/g, "")
 
-    return { thumbnail, description }
+    return { category, thumbnail, description }
   })
 
   // SEO DATA
@@ -106,9 +111,9 @@ const Posts = ({ pageContext }) => {
             ></div>
             <div className="flex flex-col h-full p-4">
               <div className="mb-4 flex flex-col h-full">
-                <div className="ellipsis-3 font-bold text-xl mb-2">
+                <h2 className="ellipsis-3 font-bold text-xl mb-2">
                   {node.name}
-                </div>
+                </h2>
                 <div className="ellipsis-2 mt-auto text-gray-500 text-sm">
                   {postDataList[i].description}
                 </div>
