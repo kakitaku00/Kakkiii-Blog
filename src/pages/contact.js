@@ -56,7 +56,6 @@ const Contact = () => {
               placeholder="お名前"
               name="name"
               onChange={handleChange}
-              autoFocus
             />
           </label>
         </div>

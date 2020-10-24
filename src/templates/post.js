@@ -2,31 +2,18 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import defaultThumbnail from "../util/defaultThumbnail"
 
 const Post = ({ data, pageContext }) => {
   const { category } = pageContext
   const post = data.esaPost
 
-  // TODO: 本番運用開始後したらkey名を変更する blog => Blog
-  // デフォルトサムネイル
-  const defaultThumbnail = {
-    blog:
-      "https://img.esa.io/uploads/production/attachments/9793/2020/10/24/40874/cefc4d08-06de-4f9a-b352-e14752e802e5.png",
-    Web:
-      "https://img.esa.io/uploads/production/attachments/9793/2020/10/24/40874/ed2ae041-4f61-4b1c-a442-baf0d81ef618.png",
-    Hobby:
-      "https://img.esa.io/uploads/production/attachments/9793/2020/10/24/40874/ed2ae041-4f61-4b1c-a442-baf0d81ef618.png",
-    Other:
-      "https://img.esa.io/uploads/production/attachments/9793/2020/10/24/40874/82b15b20-5320-4aff-bd66-3f6e24200e80.png",
-  }
   /** htmlの最初のimgタグを正規表現で取得、なければnullを格納 */
   const imageTag = post.body_html.match(/<img.*src=".*">/) || null
   /** imgタグから正規表現でURLを取得、imgタグがnullならデフォルトサムネイルを取得 */
   const thumbnail = imageTag
     ? imageTag[0].match(/https:\/\/.*\..{3}/).join(",")
     : defaultThumbnail[category]
-
-  console.log(thumbnail)
 
   /** 本文中の最初の<p>を取得 */
   const paragraph = post.body_html.match(/<p.*\/p>/) || ["none"]

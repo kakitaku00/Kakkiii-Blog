@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import defaultThumbnail from "../util/defaultThumbnail"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClock } from "@fortawesome/free-regular-svg-icons"
@@ -23,19 +24,6 @@ const Posts = ({ pageContext }) => {
       ? `${path[type]}`
       : `${path[type]}page/${(index - 1).toString()}`
   const nextUrl = `${path[type]}page/${(index + 1).toString()}`
-
-  // TODO: 本番運用開始後したらkey名を変更する blog => Blog, web => Web
-  // デフォルトサムネイル
-  const defaultThumbnail = {
-    blog:
-      "https://img.esa.io/uploads/production/attachments/9793/2020/10/24/40874/cefc4d08-06de-4f9a-b352-e14752e802e5.png",
-    web:
-      "https://img.esa.io/uploads/production/attachments/9793/2020/10/24/40874/ed2ae041-4f61-4b1c-a442-baf0d81ef618.png",
-    hobby:
-      "https://img.esa.io/uploads/production/attachments/9793/2020/10/24/40874/ed2ae041-4f61-4b1c-a442-baf0d81ef618.png",
-    other:
-      "https://img.esa.io/uploads/production/attachments/9793/2020/10/24/40874/82b15b20-5320-4aff-bd66-3f6e24200e80.png",
-  }
 
   // thumbnail and description
   const postDataList = group.map(({ node }) => {
