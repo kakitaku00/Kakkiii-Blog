@@ -30,9 +30,7 @@ const Posts = ({ pageContext }) => {
     // TODO: 本番運用開始後したらBlogとなるので処理を修正する
     /** node.category = 'blog' or 'blog/web' */
     const category =
-      node.category === "blog"
-        ? "blog"
-        : node.category.replace("blog/", "").toLowerCase()
+      node.category === "blog" ? "blog" : node.category.replace("blog/", "")
 
     /** htmlの最初のimgタグを正規表現で取得、なければnullを格納 */
     const imageTag = node.body_html.match(/<img.*src=".*">/) || null
@@ -59,11 +57,11 @@ const Posts = ({ pageContext }) => {
       path: path[type],
     },
     category: {
-      title: `${category} に関するページ`,
+      title: `${category} category`,
       path: path[type],
     },
     tags: {
-      title: `${tag} に関するページ`,
+      title: `${tag} topic`,
       path: path[type],
     },
   }
@@ -92,11 +90,15 @@ const Posts = ({ pageContext }) => {
             className="post w-full md:w-1/2-8 mb-8 rounded overflow-hidden shadow flex flex-col hover:shadow-md transform hover:-translate-y-1 transition duration-500"
           >
             <div
-              className="w-full h-48 flex-shrink-0 bg-cover"
+              className="w-full h-48 flex-shrink-0 bg-cover relative"
               style={{
                 backgroundImage: `url(${postDataList[i].thumbnail})`,
               }}
-            ></div>
+            >
+              <span className="py-1 px-3 absolute top-0 left-0 bg-teal-500 rounded-tl rounded-br font-bold text-white text-sm">
+                {postDataList[i].category}
+              </span>
+            </div>
             <div className="flex flex-col h-full p-4">
               <div className="mb-4 flex flex-col h-full">
                 <h2 className="ellipsis-3 font-bold text-xl mb-2">

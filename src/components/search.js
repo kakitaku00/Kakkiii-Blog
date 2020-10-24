@@ -153,6 +153,7 @@ const Search = () => {
         </span>
         <input
           id="search-input"
+          name="search-input"
           className="w-full p-2 pl-8 border-solid border-b border-gray-400"
           type="text"
           placeholder="Please enter the text"

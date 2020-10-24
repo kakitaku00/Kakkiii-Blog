@@ -23,7 +23,6 @@ const sideNavigation = () => (
                 className="inline-block mr-2"
                 target="_blank"
                 rel="noopener noreferrer prefetch"
-                aria-hidden="true"
               >
                 <FontAwesomeIcon icon={faTwitter} className="text-2xl" />
               </a>
@@ -32,7 +31,6 @@ const sideNavigation = () => (
                 className="inline-block"
                 target="_blank"
                 rel="noopener noreferrer prefetch"
-                aria-hidden="true"
               >
                 <FontAwesomeIcon icon={faGithub} className="text-2xl" />
               </a>

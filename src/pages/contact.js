@@ -47,7 +47,7 @@ const Contact = () => {
         onSubmit={handleSubmit}
       >
         <div className="mb-4">
-          <label for="name" className="block">
+          <label htmlFor="name" className="block">
             <span className="block text-gray-700 mb-2">お名前</span>
             <input
               id="name"
@@ -60,7 +60,7 @@ const Contact = () => {
           </label>
         </div>
         <div className="mb-4">
-          <label for="email" className="block">
+          <label htmlFor="email" className="block">
             <span className="block text-gray-700 mb-2">メールアドレス</span>
             <input
               id="email"
@@ -73,7 +73,7 @@ const Contact = () => {
           </label>
         </div>
         <div className="mb-4">
-          <label for="body" className="block">
+          <label htmlFor="body" className="block">
             <span className="block text-gray-700 mb-2">メッセージ</span>
             <textarea
               id="body"
