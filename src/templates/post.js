@@ -4,6 +4,9 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import defaultThumbnail from "../util/defaultThumbnail"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faClock } from "@fortawesome/free-regular-svg-icons"
+
 const Post = ({ data, pageContext }) => {
   const { category } = pageContext
   const post = data.esaPost
@@ -36,7 +39,7 @@ const Post = ({ data, pageContext }) => {
         <header className="mb-4 md:mb-8">
           <h2 className="text-2xl md:text-3xl font-bold">{post.name}</h2>
         </header>
-        <div className="mb-6">
+        <div className="mb-4">
           <Link
             rel="prefetch"
             to={`/category/${category}`}
@@ -55,8 +58,12 @@ const Post = ({ data, pageContext }) => {
             </Link>
           ))}
         </div>
+        <div className="mb-6 text-gray-500 text-sm">
+          <FontAwesomeIcon icon={faClock} className="mr-1" />
+          {post.created_at.replace(/T.+/g, "")}
+        </div>
         <div
-          className="markdown-body pb-24 lg:pb-0"
+          className="markdown-body pb-24"
           dangerouslySetInnerHTML={{
             __html:
               post.childrenEsaPostBodyMarkdown[0].childMarkdownRemark.html,
