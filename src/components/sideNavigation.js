@@ -24,12 +24,9 @@ const sideNavigation = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 rel="prefetch"
+                aria-hidden="true"
               >
-                <FontAwesomeIcon
-                  icon={faTwitter}
-                  className="text-2xl"
-                  aria-hidden="true"
-                />
+                <FontAwesomeIcon icon={faTwitter} className="text-2xl" />
               </a>
               <a
                 href="https://github.com/kakitaku00"
@@ -37,12 +34,9 @@ const sideNavigation = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 rel="prefetch"
+                aria-hidden="true"
               >
-                <FontAwesomeIcon
-                  icon={faGithub}
-                  className="text-2xl"
-                  aria-hidden="true"
-                />
+                <FontAwesomeIcon icon={faGithub} className="text-2xl" />
               </a>
             </div>
           </div>
