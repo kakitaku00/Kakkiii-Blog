@@ -4,9 +4,6 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import defaultThumbnail from "../util/defaultThumbnail"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faClock } from "@fortawesome/free-regular-svg-icons"
-
 const Post = ({ data, pageContext }) => {
   const { category } = pageContext
   const post = data.esaPost
@@ -59,7 +56,6 @@ const Post = ({ data, pageContext }) => {
           ))}
         </div>
         <div className="mb-6 text-gray-600 text-sm">
-          <FontAwesomeIcon icon={faClock} className="mr-1" />
           {post.created_at.replace(/T.+/g, "")}
         </div>
         <div
