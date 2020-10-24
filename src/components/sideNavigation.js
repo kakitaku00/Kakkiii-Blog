@@ -4,6 +4,7 @@ import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons"
 import React from "react"
 
 import Search from "./search"
+import PickUpTopics from "./pickUpTopics"
 
 const sideNavigation = () => (
   <div className="lg:w-navi w-full lg:ml-8 lg:mt-0 mt-8 flex-shrink-0">
@@ -93,29 +94,9 @@ const sideNavigation = () => (
           </li>
         </ul>
       </div>
-
       <div className="p-4 pb-3 mb-4 rounded shadow">
         <div className="mb-3 font-bold">Pick Up Topics</div>
-        <ul className="flex flex-wrap">
-          <li>
-            <Link
-              rel="prefetch"
-              to={`/tags/test`}
-              className="inline-block bg-gray-200 rounded-full px-3 py-1 mb-2 text-xs md:text-sm font-semibold text-gray-700 mr-2"
-            >
-              #test
-            </Link>
-          </li>
-          <li>
-            <Link
-              rel="prefetch"
-              to={`/tags/sample`}
-              className="inline-block bg-gray-200 rounded-full px-3 py-1 mb-2 text-xs md:text-sm font-semibold text-gray-700 mr-2"
-            >
-              #sample
-            </Link>
-          </li>
-        </ul>
+        <PickUpTopics />
       </div>
     </div>
   </div>
