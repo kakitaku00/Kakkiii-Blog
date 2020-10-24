@@ -104,7 +104,7 @@ const Posts = ({ pageContext }) => {
                 <h2 className="ellipsis-3 font-bold text-xl mb-2">
                   {node.name}
                 </h2>
-                <div className="ellipsis-2 mt-auto text-gray-500 text-sm">
+                <div className="ellipsis-2 mt-auto text-gray-600 text-sm">
                   {postDataList[i].description}
                 </div>
               </div>
@@ -125,7 +125,7 @@ const Posts = ({ pageContext }) => {
                     </span>
                   )}
                 </div>
-                <div className="ml-auto mt-2 flex flex-shrink-0 items-center text-gray-500 text-sm">
+                <div className="ml-auto mt-2 flex flex-shrink-0 items-center text-gray-600 text-sm">
                   <FontAwesomeIcon icon={faClock} className="mr-1" />
                   {node.created_at.replace(/T.+/g, "")}
                 </div>

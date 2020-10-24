@@ -58,7 +58,7 @@ const Post = ({ data, pageContext }) => {
             </Link>
           ))}
         </div>
-        <div className="mb-6 text-gray-500 text-sm">
+        <div className="mb-6 text-gray-600 text-sm">
           <FontAwesomeIcon icon={faClock} className="mr-1" />
           {post.created_at.replace(/T.+/g, "")}
         </div>
