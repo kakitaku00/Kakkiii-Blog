@@ -23,6 +23,8 @@ const Post = ({ data, pageContext }) => {
     .replace(/<p.*">/, "")
     .replace(/<\/.>/g, "")
 
+  const html = post.childrenEsaPostBodyMarkdown[0].childMarkdownRemark.html
+
   return (
     <Layout>
       <SEO
@@ -61,8 +63,7 @@ const Post = ({ data, pageContext }) => {
         <div
           className="markdown-body pb-24"
           dangerouslySetInnerHTML={{
-            __html:
-              post.childrenEsaPostBodyMarkdown[0].childMarkdownRemark.html,
+            __html: html,
           }}
         />
       </section>

@@ -988,6 +988,10 @@
 
 /* ========== Add Markdown CSS ========== */
 
+.markdown-body p {
+  white-space: pre-wrap;
+}
+
 .markdown-body ol {
   list-style: decimal;
 }
@@ -1019,4 +1023,8 @@
 .markdown-body h6 {
   margin-top: 36px;
   margin-bottom: 24px;
+}
+
+.markdown-body summary {
+  margin-bottom: 10px;
 }
