@@ -84,6 +84,11 @@ export const query = graphql`
       tags
       created_at
       updated_at
+      childrenEsaPostBodyHtml {
+        childHtmlRehype {
+          tableOfContents
+        }
+      }
       childrenEsaPostBodyMarkdown {
         childMarkdownRemark {
           html
