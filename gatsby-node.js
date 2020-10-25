@@ -20,7 +20,6 @@ exports.createPages = ({ graphql, actions }) => {
           node {
             number
             name
-            body_md
             body_html
             category
             tags
