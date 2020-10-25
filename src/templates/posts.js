@@ -39,8 +39,9 @@ const Posts = ({ pageContext }) => {
       ? imageTag[0].match(/https:\/\/.*\..{3}/).join(",")
       : defaultThumbnail[category]
 
+    const html = node.body_html
     /** 本文中の最初の<p>を取得 */
-    const paragraph = node.body_html.match(/<p[\s\S]*?\/p>/) || ["none"]
+    const paragraph = html.match(/<p [\s\S]*?\/p>/) || ["none"]
     /** <p>タグ内の<br>タグを取り除いたテキストを格納 */
     const description = paragraph[0]
       .replace(/<br>/g, "")

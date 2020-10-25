@@ -7,6 +7,7 @@ import defaultThumbnail from "../util/defaultThumbnail"
 const Post = ({ data, pageContext }) => {
   const { category } = pageContext
   const post = data.esaPost
+  const html = post.childrenEsaPostBodyMarkdown[0].childMarkdownRemark.html
 
   /** htmlの最初のimgタグを正規表現で取得、なければnullを格納 */
   const imageTag = post.body_html.match(/<img.*src=".*">/) || null
@@ -22,8 +23,6 @@ const Post = ({ data, pageContext }) => {
     .replace(/<br>/g, "")
     .replace(/<p.*">/, "")
     .replace(/<\/.>/g, "")
-
-  const html = post.childrenEsaPostBodyMarkdown[0].childMarkdownRemark.html
 
   return (
     <Layout>
@@ -84,6 +83,11 @@ export const query = graphql`
       tags
       created_at
       updated_at
+      childrenEsaPostBodyHtml {
+        childHtmlRehype {
+          tableOfContents
+        }
+      }
       childrenEsaPostBodyMarkdown {
         childMarkdownRemark {
           html
