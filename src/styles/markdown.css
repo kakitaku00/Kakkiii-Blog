@@ -988,6 +988,11 @@
 
 /* ========== Add Markdown CSS ========== */
 
+.markdown-body {
+  line-height: 2;
+  font-size: 18px;
+}
+
 .markdown-body p {
   white-space: pre-wrap;
 }
@@ -1006,8 +1011,13 @@
 
 @media screen and (max-width: 639px) {
   .markdown-body {
-    font-size: 14px;
+    font-size: 16px;
   }
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  line-height: 2;
 }
 
 /* twitterのscriptからインラインスタイルが当たってします為importantを付与 */
@@ -1043,9 +1053,9 @@
 }
 
 .markdown-body .toc li + li {
-  margin-top: 0.5em;
+  margin-top: 0.25em;
 }
 
 .markdown-body .toc > ul > li ul li {
-  margin-top: 0.5em;
+  margin-top: 0.25em;
 }

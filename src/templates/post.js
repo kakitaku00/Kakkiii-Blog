@@ -56,7 +56,7 @@ const Post = ({ data, pageContext }) => {
             </Link>
           ))}
         </div>
-        <div className="mb-6 text-gray-600 text-sm">
+        <div className="md:mb-6 mb-4 text-gray-600 text-sm">
           {post.created_at.replace(/T.+/g, "")}
         </div>
         <div
