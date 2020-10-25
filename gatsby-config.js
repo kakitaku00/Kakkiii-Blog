@@ -8,7 +8,7 @@ module.exports = {
     title: `Kakkiii-Blog`,
     description: `Kakkiii's blog`,
     author: `@kakkiii00`,
-    url: `https://brave-bohr-ba3457.netlify.app`,
+    url: `https://kakkiii-blog.dev`,
     twitterUsername: `@kakkiii00`,
   },
   plugins: [
