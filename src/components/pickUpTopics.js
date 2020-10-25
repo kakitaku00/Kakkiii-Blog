@@ -43,8 +43,8 @@ const PickUpTopics = () => {
   return (
     <ul className="flex flex-wrap">
       {/* TODO: tagの数が増えたら表示制限も検討する */}
-      {tags.map(tag => (
-        <li>
+      {tags.map((tag, index) => (
+        <li key={index}>
           <Link
             rel="prefetch"
             to={`/tags/${tag.name}`}
