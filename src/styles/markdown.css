@@ -4,12 +4,12 @@
   vertical-align: text-bottom;
 }
 
-.markdown-body .anchor {
+/* .markdown-body .anchor {
   float: left;
   line-height: 1;
   margin-left: -20px;
   padding-right: 4px;
-}
+} */
 
 .markdown-body .anchor:focus {
   outline: none;
@@ -1028,4 +1028,11 @@
 
 .markdown-body summary {
   margin-bottom: 10px;
+}
+
+.markdown-body .anchor {
+  position: absolute;
+  top: calc(50% - 3px);
+  left: -20px;
+  transform: translate(0, -50%);
 }
