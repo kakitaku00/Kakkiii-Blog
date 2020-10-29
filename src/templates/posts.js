@@ -13,7 +13,7 @@ const Posts = ({ pageContext }) => {
   const { type, tag, category } = additionalContext
 
   const path = {
-    default: "/",
+    default: "",
     category: `/category/${category}/`,
     tags: `/tags/${tag}/`,
   }
