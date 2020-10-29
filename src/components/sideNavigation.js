@@ -50,7 +50,7 @@ const sideNavigation = () => (
         </div>
         <div className="">
           <div className="text-gray-600 text-sm">works</div>
-          <span className="text-sm">Front end engineer</span>
+          <span className="text-sm">Front-end Engineer</span>
         </div>
       </div>
 
