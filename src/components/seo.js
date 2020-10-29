@@ -97,7 +97,8 @@ SEO.defaultProps = {
   lang: `ja`,
   meta: [],
   description: ``,
-  image: null,
+  image:
+    "https://img.esa.io/uploads/production/attachments/9793/2020/10/30/40874/00741ffe-01e7-44e7-a236-c751e29e240c.png",
 }
 
 SEO.propTypes = {
