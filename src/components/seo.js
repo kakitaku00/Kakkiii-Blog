@@ -27,7 +27,9 @@ function SEO({ description, lang, meta, title, image, path }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
-  const metaImage = image || null
+  const metaImage =
+    image ||
+    "https://img.esa.io/uploads/production/attachments/9793/2020/10/30/40874/00741ffe-01e7-44e7-a236-c751e29e240c.png"
   const metaUrl = site.siteMetadata.url + path
 
   return (
