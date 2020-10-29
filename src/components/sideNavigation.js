@@ -55,12 +55,12 @@ const sideNavigation = () => (
       </div>
 
       <div className="p-4 mb-4 rounded shadow">
-        <div className="mb-3 font-bold">Search Posts</div>
+        <div className="mb-3 text-base font-bold">Search Posts</div>
         <Search />
       </div>
 
       <div className="p-4 mb-4 rounded shadow">
-        <div className="mb-3 font-bold">Category</div>
+        <div className="mb-3 text-base font-bold">Category</div>
         <ul>
           <li>
             <Link
@@ -101,7 +101,7 @@ const sideNavigation = () => (
         </ul>
       </div>
       <div className="p-4 pb-3 mb-4 rounded shadow">
-        <div className="mb-3 font-bold">Pick Up Topics</div>
+        <div className="mb-3 text-base font-bold">Pick Up Topics</div>
         <PickUpTopics />
       </div>
     </div>

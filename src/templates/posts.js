@@ -89,7 +89,7 @@ const Posts = ({ pageContext }) => {
             className="post w-full md:w-1/2-8 mb-8 rounded overflow-hidden shadow flex flex-col hover:shadow-md transform hover:-translate-y-1 transition duration-500"
           >
             <div
-              className="w-full h-48 flex-shrink-0 bg-cover relative"
+              className="w-full h-48 flex-shrink-0 bg-cover bg-center relative"
               style={{
                 backgroundImage: `url(${postDataList[i].thumbnail})`,
               }}
