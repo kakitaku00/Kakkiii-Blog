@@ -10,10 +10,10 @@ const sideNavigation = () => (
   <div className="lg:w-navi w-full lg:ml-8 lg:mt-0 mt-8 flex-shrink-0">
     <div className="lg:sticky lg:top-2">
       <div className="p-4 mb-4 rounded shadow">
-        <div className="flex items-center mb-8">
+        <div className="flex items-center mb-4">
           <img
             className="w-16 h-16 block rounded-full"
-            src="https://avatars0.githubusercontent.com/u/36177545?s=460&amp;v=4"
+            src="https://pbs.twimg.com/profile_images/1051118922974388226/8dFFoG6O_400x400.jpg"
             alt="profile"
           />
           <div className="ml-2 p-2">
@@ -38,13 +38,19 @@ const sideNavigation = () => (
             </div>
           </div>
         </div>
-        <div className="mb-4">
-          <div className="text-gray-600 text-sm">about this blog</div>
-          Maiking ...
+        <div className="mb-3">
+          <div className="text-gray-600 text-sm">about</div>
+          <Link
+            rel="prefetch"
+            to={`/posts/460`}
+            className="text-sm underline hover:no-underline"
+          >
+            このブログについて
+          </Link>
         </div>
         <div className="">
           <div className="text-gray-600 text-sm">works</div>
-          Front end engineer
+          <span className="text-sm">Front end engineer</span>
         </div>
       </div>
 
@@ -59,7 +65,7 @@ const sideNavigation = () => (
           <li>
             <Link
               rel="prefetch"
-              to={`/category/blog`}
+              to={`/category/Blog`}
               className="block py-2 mb-1 text-sm md:text-md border-solid border-b border-gray-400"
             >
               Blog

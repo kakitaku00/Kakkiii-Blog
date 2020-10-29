@@ -27,10 +27,8 @@ const Posts = ({ pageContext }) => {
 
   // thumbnail and description
   const postDataList = group.map(({ node }) => {
-    // TODO: 本番運用開始後したらBlogとなるので処理を修正する
-    /** node.category = 'blog' or 'blog/web' */
     const category =
-      node.category === "blog" ? "blog" : node.category.replace("blog/", "")
+      node.category === "Blog" ? "Blog" : node.category.replace("Blog/", "")
 
     /** htmlの最初のimgタグを正規表現で取得、なければnullを格納 */
     const imageTag = node.body_html.match(/<img.*src=".*">/) || null
