@@ -1032,7 +1032,8 @@
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  margin-top: 36px;
+  margin-top: 18px;
+  padding-top: 18px;
   margin-bottom: 24px;
 }
 
@@ -1047,6 +1048,18 @@
   transform: translate(0, -50%);
 }
 
+.markdown-body ol ol,
+.markdown-body ol ul,
+.markdown-body ul ol,
+.markdown-body ul ul {
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.markdown-body .toc {
+  margin-bottom: 4rem;
+}
+
 .markdown-body .toc p {
   margin-top: 0;
   margin-bottom: 0;
@@ -1058,14 +1071,6 @@
 
 .markdown-body .toc > ul > li ul li {
   margin-top: 0.25em;
-}
-
-.markdown-body ol ol,
-.markdown-body ol ul,
-.markdown-body ul ol,
-.markdown-body ul ul {
-  margin-top: -10px;
-  margin-bottom: 10px;
 }
 
 .markdown-body .toc ol ol,
