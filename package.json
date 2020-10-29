@@ -23,6 +23,7 @@
     "gatsby-plugin-postcss": "^2.3.11",
     "gatsby-plugin-react-helmet": "^3.3.12",
     "gatsby-plugin-sharp": "^2.6.26",
+    "gatsby-plugin-sitemap": "^2.4.17",
     "gatsby-plugin-twitter": "^2.3.12",
     "gatsby-remark-autolink-headers": "^2.3.15",
     "gatsby-remark-prismjs": "^3.5.10",
