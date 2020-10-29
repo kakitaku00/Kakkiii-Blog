@@ -9,6 +9,7 @@ module.exports = {
     description: `Kakkiii's blog`,
     author: `@kakkiii00`,
     url: `https://kakkiii-blog.dev`,
+    siteUrl: `https://kakkiii-blog.dev`,
     twitterUsername: `@kakkiii00`,
   },
   plugins: [
@@ -25,6 +26,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-twitter`,
     `gatsby-plugin-catch-links`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
