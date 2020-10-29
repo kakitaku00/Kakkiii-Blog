@@ -42,7 +42,7 @@ module.exports = {
         team: process.env.TEAM_NAME,
         token: process.env.ESA_TOKEN,
         posts: {
-          q: `wip:false category:blog`,
+          q: `wip:false in:Blog`,
           include: [`comments`, `stargazers`],
           sort: `number`,
           order: `asc`,

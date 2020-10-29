@@ -39,7 +39,7 @@ exports.createPages = ({ graphql, actions }) => {
     allEsaPost.edges.forEach(edge => {
       const post = edge.node
       const number = post.number
-      const category = post.category.replace(/blog\//, "") || "blog"
+      const category = post.category.replace(/Blog\//, "") || "Blog"
 
       post.tags.forEach(tag => {
         tagMap.set(
@@ -62,7 +62,7 @@ exports.createPages = ({ graphql, actions }) => {
      */
     allEsaPost.edges.forEach(edge => {
       const number = edge.node.number
-      const category = edge.node.category.replace(/blog\//, "") || "blog"
+      const category = edge.node.category.replace(/Blog\//, "") || "Blog"
 
       createPage({
         path: `/posts/${number}`,
