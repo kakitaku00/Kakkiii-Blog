@@ -17,10 +17,12 @@ const Post = ({ data, pageContext }) => {
     : defaultThumbnail[category]
 
   /** 本文中の最初の<p>を取得 */
-  const paragraph = post.body_html.match(/<p.*\/p>/) || ["none"]
+  const paragraph = post.body_html.match(/<p [\s\S]*?\/p>/) || ["none"]
   /** <p>タグ内の<br>タグを取り除いたテキストを格納 */
   const description = paragraph[0]
     .replace(/<br>/g, "")
+    .replace(/<\/*code>/g, "")
+    .replace(/<\/*strong>/g, "")
     .replace(/<p.*">/, "")
     .replace(/<\/.>/g, "")
 

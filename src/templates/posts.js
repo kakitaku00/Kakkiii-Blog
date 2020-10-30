@@ -43,6 +43,8 @@ const Posts = ({ pageContext }) => {
     /** <p>タグ内の<br>タグを取り除いたテキストを格納 */
     const description = paragraph[0]
       .replace(/<br>/g, "")
+      .replace(/<\/*code>/g, "")
+      .replace(/<\/*strong>/g, "")
       .replace(/<p.*">/, "")
       .replace(/<\/.>/g, "")
 

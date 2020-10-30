@@ -20,6 +20,7 @@ function SEO({ description, lang, meta, title, image, path }) {
             description
             author
             url
+            twitterUsername
           }
         }
       }
@@ -32,44 +33,32 @@ function SEO({ description, lang, meta, title, image, path }) {
     "https://img.esa.io/uploads/production/attachments/9793/2020/10/30/40874/00741ffe-01e7-44e7-a236-c751e29e240c.png"
   const metaUrl = site.siteMetadata.url + path
 
+
+  const seo = {
+    title: title || site.siteMetadata.title,
+    lang,
+    description: metaDescription,
+    image: metaImage,
+    url: metaUrl,
+  }
+
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title || site.siteMetadata.title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          property: `og:url`,
-          content: metaUrl,
-        },
-        {
-          property: `og:image`,
-          content: metaImage,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary_large_image`
-        }
-      ].concat(meta)}
-    />
+    <Helmet>
+      <title>{seo.title}</title>
+      <html lang={seo.lang} />
+      <meta name="description" content={seo.description} />
+      <meta name="image" content={seo.image} />
+      <meta property="og:url" content={seo.url} />
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:description" content={seo.description} />
+      <meta property="og:image" content={seo.image} />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:creator" content={site.siteMetadata.twitterUsername} />
+      <meta name="twitter:title" content={seo.title} />
+      <meta name="twitter:description" content={seo.description} />
+      <meta name="twitter:image" content={seo.image} />
+    </Helmet>
   )
 }
 
