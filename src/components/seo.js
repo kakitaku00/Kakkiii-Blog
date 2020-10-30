@@ -64,6 +64,10 @@ function SEO({ description, lang, meta, title, image, path }) {
           property: `og:image`,
           content: metaImage,
         },
+        {
+          name: `twitter:card`,
+          content: `summary_large_image`
+        }
       ].concat(meta)}
     />
   )
