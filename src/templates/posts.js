@@ -1,7 +1,7 @@
 import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import { Link } from "gatsby"
 import Layout from "../components/layout"
-import { Helmet } from "react-helmet"
+import SEO from "../components/seo"
 import defaultThumbnail from "../util/defaultThumbnail"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -9,22 +9,6 @@ import { faClock } from "@fortawesome/free-regular-svg-icons"
 import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 
 const Posts = ({ pageContext }) => {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-            url
-            twitterUsername
-          }
-        }
-      }
-    `
-  )
-
   const { group, index, first, last, additionalContext } = pageContext
   const { type, tag, category } = additionalContext
 
@@ -67,9 +51,7 @@ const Posts = ({ pageContext }) => {
     return { category, thumbnail, description }
   })
 
-  /**
-   * SEO DATA
-   **/
+  // SEO DATA
   const SEO_DATA = {
     default: {
       title: `TOP`,
@@ -85,32 +67,9 @@ const Posts = ({ pageContext }) => {
     },
   }
 
-  const seo = {
-    title: SEO_DATA[type].title,
-    lang: 'ja',
-    description: site.siteMetadata.description,
-    image: "https://img.esa.io/uploads/production/attachments/9793/2020/10/30/40874/00741ffe-01e7-44e7-a236-c751e29e240c.png",
-    url: site.siteMetadata.url + SEO_DATA[type].path,
-  }
-
   return (
     <Layout>
-      <Helmet>
-        <title>{seo.title}</title>
-        <html lang={seo.lang} />
-        <meta name="description" content={seo.description} />
-        <meta name="image" content={seo.image} />
-        <meta property="og:url" content={seo.url} />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={seo.title} />
-        <meta property="og:description" content={seo.description} />
-        <meta property="og:image" content={seo.image} />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:creator" content={site.siteMetadata.twitterUsername} />
-        <meta name="twitter:title" content={seo.title} />
-        <meta name="twitter:description" content={seo.description} />
-        <meta name="twitter:image" content={seo.image} />
-      </Helmet>
+      <SEO title={SEO_DATA[type].title} path={SEO_DATA[type].path} />
       {category && (
         <div className="mb-6">
           <span className="font-bold md:text-3xl text-xl mr-2">{category}</span>
