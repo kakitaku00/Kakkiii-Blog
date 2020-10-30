@@ -29,7 +29,7 @@ function SEO({ description, lang, meta, title, image, path }) {
   const metaDescription = description || site.siteMetadata.description
   const metaImage =
     image ||
-    "/images/ogp_image.png"
+    "https://img.esa.io/uploads/production/attachments/9793/2020/10/30/40874/00741ffe-01e7-44e7-a236-c751e29e240c.png"
   const metaUrl = site.siteMetadata.url + path
 
   return (
@@ -64,26 +64,6 @@ function SEO({ description, lang, meta, title, image, path }) {
           property: `og:image`,
           content: metaImage,
         },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-        {
-          name: `twitter:image`,
-          content: metaImage,
-        },
       ].concat(meta)}
     />
   )
@@ -94,7 +74,7 @@ SEO.defaultProps = {
   meta: [],
   description: ``,
   image:
-    "/images/ogp_image.png",
+    "https://img.esa.io/uploads/production/attachments/9793/2020/10/30/40874/00741ffe-01e7-44e7-a236-c751e29e240c.png",
 }
 
 SEO.propTypes = {
