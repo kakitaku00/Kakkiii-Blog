@@ -10,7 +10,6 @@ exports.onPreRenderHTML = function onPreRenderHTML({
   replaceHeadComponents,
 }) {
   const headComponents = getHeadComponents();
-  console.log('headComponents confirm:', headComponents)
   headComponents.sort((a, b) => {
     if (a.type === b.type || (a.type !== 'style' && b.type !== 'style')) {
       return 0;

@@ -1041,9 +1041,9 @@
   margin-bottom: 10px;
 }
 
-.markdown-body .anchor {
+.markdown-body .anchor.before {
   position: absolute;
-  top: calc(50% - 3px);
+  top: calc(50% + 6px);
   left: -20px;
   transform: translate(0, -50%);
 }
