@@ -5,4 +5,7 @@
  */
 
 // You can delete this file if you're not using it
-require("prismjs/themes/prism-okaidia.css")
+import "prismjs/themes/prism-okaidia.css"
+import "./src/styles/layout.css"
+import "./src/styles/tailwind.css"
+import "./src/styles/markdown.css"

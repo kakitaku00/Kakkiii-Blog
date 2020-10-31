@@ -9,10 +9,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import "../styles/layout.css"
-import "../styles/tailwind.css"
-import "../styles/markdown.css"
-
 import Header from "./header"
 import Footer from "./footer"
 import SideNavigation from "./sideNavigation"
