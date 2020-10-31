@@ -1079,3 +1079,9 @@
 .markdown-body .toc ul ul {
   margin-top: 0px;
 }
+
+.markdown-body :not(pre) > code[class*="language-"] {
+  color: inherit;
+  background-color: #edf2f7;
+  text-shadow: 0 0.5px rgba(0, 0, 0, 0.2);
+}
