@@ -1009,12 +1009,6 @@
   margin: 0 auto 16px;
 }
 
-@media screen and (max-width: 639px) {
-  .markdown-body {
-    font-size: 16px;
-  }
-}
-
 .markdown-body .highlight pre,
 .markdown-body pre {
   line-height: 2;
@@ -1099,4 +1093,19 @@
 
 .markdown-body .code-title + .gatsby-highlight pre {
   border-top-left-radius: 0;
+}
+
+@media screen and (max-width: 639px) {
+  .markdown-body {
+    font-size: 16px;
+  }
+
+  .markdown-body .highlight pre,
+  .markdown-body pre {
+    padding: 12px;
+  }
+
+  .markdown-body .code-title {
+    padding: 0 12px;
+  }
 }

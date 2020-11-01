@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
     <div className="layout min-h-screen flex flex-col">
       <Header siteTitle={data.site.siteMetadata.title} />
       <main className="main">
-        <div className="flex flex-col lg:flex-row max-w-screen-xl mx-auto xl:px-24 lg:px-16 md:px-12 sm:px-8 px-4 md:py-12 py-6">
+        <div className="flex flex-col lg:flex-row max-w-screen-xl mx-auto xl:px-24 lg:px-16 md:px-12 sm:px-8 px-3 md:py-12 py-6">
           <div className="lg:w-posts w-full relative">{children}</div>
           <SideNavigation />
         </div>
