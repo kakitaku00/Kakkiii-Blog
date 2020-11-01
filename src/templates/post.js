@@ -27,7 +27,7 @@ const Post = ({ data, pageContext }) => {
     .replace(/<\/.>/g, "")
 
   return (
-    <Layout>
+    <Layout isPost>
       <SEO
         title={post.name}
         description={description || " "}
@@ -37,7 +37,7 @@ const Post = ({ data, pageContext }) => {
       />
       <section>
         <header className="mb-4 md:mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold">{post.name}</h2>
+          <h1 className="text-2xl md:text-3xl font-bold">{post.name}</h1>
         </header>
         <div className="mb-4">
           <Link

@@ -26,7 +26,12 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-twitter`,
     `gatsby-plugin-catch-links`,
-    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: [`/thanks/`, `/using-typescript/`],
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

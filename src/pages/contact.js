@@ -38,7 +38,7 @@ const Contact = () => {
   return (
     <Layout>
       <SEO title="Contact" path="/contact" />
-      <h2 className="text-xl md:text-3xl font-bold mb-4">お問い合わせ</h2>
+      <h1 className="text-xl md:text-3xl font-bold mb-4">お問い合わせ</h1>
       <p className="mb-4">
         ご依頼・お問い合わせなどございましたら、下記よりお気軽にご連絡ください。
       </p>
