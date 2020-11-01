@@ -13,6 +13,13 @@ module.exports = {
     twitterUsername: `@kakkiii00`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+        head: true,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     "gatsby-plugin-postcss",
     {
@@ -76,9 +83,9 @@ module.exports = {
             },
           },
           {
-            resolve: 'gatsby-remark-code-titles',
+            resolve: "gatsby-remark-code-titles",
             options: {
-              className: 'code-title',
+              className: "code-title",
             },
           },
           {
