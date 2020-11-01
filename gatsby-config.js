@@ -71,6 +71,12 @@ module.exports = {
             },
           },
           {
+            resolve: 'gatsby-remark-code-titles',
+            options: {
+              className: 'code-title',
+            },
+          },
+          {
             resolve: `gatsby-remark-prismjs`,
             options: {
               classPrefix: "language-",

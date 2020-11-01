@@ -1085,3 +1085,18 @@
   background-color: #edf2f7;
   text-shadow: 0 0.5px rgba(0, 0, 0, 0.2);
 }
+
+.markdown-body .code-title {
+  display: table;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 85%;
+  background: #38b2ac;
+  padding: 0 16px;
+}
+
+.markdown-body .code-title + .gatsby-highlight pre {
+  border-top-left-radius: 0;
+}
