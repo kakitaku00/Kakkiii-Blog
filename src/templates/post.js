@@ -64,7 +64,7 @@ const Post = ({ data, pageContext }) => {
           </time>
         </div>
         <div
-          className="markdown-body pb-24"
+          className="markdown-body pb-24 text-justify"
           dangerouslySetInnerHTML={{
             __html: html,
           }}

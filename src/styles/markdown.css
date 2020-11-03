@@ -639,7 +639,7 @@
 .markdown-body table,
 .markdown-body ul {
   margin-top: 0;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .markdown-body hr {
@@ -725,7 +725,7 @@
 }
 
 .markdown-body li > p {
-  margin-top: 16px;
+  margin-top: 24px;
 }
 
 .markdown-body li + li {
@@ -1006,7 +1006,7 @@
 }
 
 .markdown-body img {
-  margin: 0 auto 16px;
+  margin: 0 auto 24px;
 }
 
 .markdown-body .highlight pre,
@@ -1026,9 +1026,9 @@
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  margin-top: 18px;
-  padding-top: 18px;
-  margin-bottom: 24px;
+  margin-top: 24px;
+  padding-top: 24px;
+  margin-bottom: 30px;
 }
 
 .markdown-body summary {
