@@ -59,7 +59,9 @@ const Post = ({ data, pageContext }) => {
           ))}
         </div>
         <div className="mb-4 text-gray-600 text-sm">
-          {post.created_at.replace(/T.+/g, "")}
+          <time datetime={post.created_at}>
+            {post.created_at.replace(/T.+/g, "")}
+          </time>
         </div>
         <div
           className="markdown-body pb-24"
