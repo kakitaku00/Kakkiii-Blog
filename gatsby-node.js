@@ -65,7 +65,7 @@ exports.createPages = ({ graphql, actions }) => {
       const category = edge.node.category.replace(/Blog\//, "") || "Blog"
 
       createPage({
-        path: `/posts/${number}`,
+        path: `/posts/${number}/`,
         component: postTemplate,
         context: {
           number,
