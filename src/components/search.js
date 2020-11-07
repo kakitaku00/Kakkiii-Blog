@@ -130,7 +130,7 @@ const Search = () => {
     <>
       {resultData.map((post, index) => (
         <Link
-          to={`/posts/${post.number}`}
+          to={`/posts/${post.number}/`}
           key={post.number}
           className="search-item block w-full h-auto px-2 leading-10 bg-white break-all ellipsis-1"
           title={post.name}

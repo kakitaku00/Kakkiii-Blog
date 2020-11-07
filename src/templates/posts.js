@@ -86,7 +86,7 @@ const Posts = ({ pageContext }) => {
         {group.map(({ node }, i) => (
           <Link
             rel="prefetch"
-            to={`/posts/${node.number}`}
+            to={`/posts/${node.number}/`}
             key={node.number}
             className="post w-full md:w-1/2-8 mb-8 rounded overflow-hidden shadow flex flex-col hover:shadow-md transform hover:-translate-y-1 transition duration-500"
           >
