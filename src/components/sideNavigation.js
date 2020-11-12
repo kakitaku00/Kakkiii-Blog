@@ -7,7 +7,7 @@ import Search from "./search"
 import PickUpTopics from "./pickUpTopics"
 
 const sideNavigation = () => (
-  <div className="lg:w-navi w-full lg:ml-8 lg:mt-0 mt-8 flex-shrink-0">
+  <div className="lg:w-navi w-full lg:ml-12 lg:mt-0 mt-8 flex-shrink-0">
     <div className="lg:sticky lg:top-2">
       <div className="p-4 mb-4 rounded shadow">
         <div className="flex items-center mb-4">
