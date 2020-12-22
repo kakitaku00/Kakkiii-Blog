@@ -1037,9 +1037,9 @@
 
 .markdown-body .anchor.before {
   position: absolute;
-  top: calc(50% + 6px);
+  top: calc(24px + 6px); /* 24px ... 見出しのpadding-top */
   left: -20px;
-  transform: translate(0, -50%);
+  transform: translate(0, 0);
 }
 
 .markdown-body ol ol,
